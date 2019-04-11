@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Koffer</string>
+
+    <!-- -->
+    <string name="header">HEADER</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet,
+        consectetur adipiscing elit.
+        Etiam at turpis condimentum,
+        pharetra enim sit amet, consectetur velit.
+        Integer pellentesque nibh varius quam hendrerit,
+        eget placerat orci porta.
+    </string>
 </resources>
