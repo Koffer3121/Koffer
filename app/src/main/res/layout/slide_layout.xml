@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/lilo">
 
     <ImageView
-        android:id="@+id/slade_img"
+        android:id="@+id/slide_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="104dp"
@@ -16,17 +17,18 @@
         app:srcCompat="@drawable/eat_icon" />
 
     <TextView
-        android:id="@+id/slade_header"
+        android:id="@+id/slide_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:text="@string/header"
+        android:textColor="@color/colorWhite"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/slade_img"
-        app:layout_constraintTop_toBottomOf="@+id/slade_img" />
+        app:layout_constraintEnd_toEndOf="@+id/slide_img"
+        app:layout_constraintTop_toBottomOf="@+id/slide_img" />
 
     <TextView
         android:id="@+id/slide_desc"
@@ -37,7 +39,8 @@
         android:gravity="center_horizontal"
         android:padding="50dp"
         android:text="@string/lorem_ipsum"
+        android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/slade_header" />
+        app:layout_constraintTop_toTopOf="@+id/slide_header" />
 </android.support.constraint.ConstraintLayout>
