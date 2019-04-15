@@ -21,7 +21,8 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.email).toString();
         passwd = findViewById(R.id.pasword).toString();
 
-        button.findViewById(R.id.btnLogin).setOnClickListener(new View.OnClickListener() {
+        button=findViewById(R.id.btnLogin);
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

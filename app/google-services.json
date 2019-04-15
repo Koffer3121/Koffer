@@ -21,6 +21,18 @@
             "package_name": "com.example.koffer",
             "certificate_hash": "18a0cfca1a2f01eda5c1276125a748e844862a38"
           }
+        },
+        {
+          "client_id": "1007309884278-n5ug4510sp4dskfjh4mgd86kelhhcvao.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.koffer",
+            "certificate_hash": "7c806bdc2f8157a4b1225ca6bf51239276181fa3"
+          }
+        },
+        {
+          "client_id": "1007309884278-gsbhm60f4u0c6753e33knsjrbi382v23.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [
