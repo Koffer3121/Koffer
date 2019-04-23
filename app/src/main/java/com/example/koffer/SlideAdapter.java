@@ -28,30 +28,22 @@ public class SlideAdapter extends PagerAdapter {
     };
 
     public String[] slide_headings = {
-            "EAT",
-            "SLEEP",
-            "CODE"
+            "BIENVENIDO",
+            "LOGÍSTICA",
+            "COMODIDAD"
     };
 
     public String[] slide_descs = {
-            "Lorem ipsum dolor sit amet,\n" +
-                    "        consectetur adipiscing elit.\n" +
-                    "        Etiam at turpis condimentum,\n" +
-                    "        pharetra enim sit amet, consectetur velit.\n" +
-                    "        Integer pellentesque nibh varius quam hendrerit,\n" +
-                    "        eget placerat orci porta.",
-            "Lorem ipsum dolor sit amet,\n" +
-                    "        consectetur adipiscing elit.\n" +
-                    "        Etiam at turpis condimentum,\n" +
-                    "        pharetra enim sit amet, consectetur velit.\n" +
-                    "        Integer pellentesque nibh varius quam hendrerit,\n" +
-                    "        eget placerat orci porta.",
-            "Lorem ipsum dolor sit amet,\n" +
-                    "        consectetur adipiscing elit.\n" +
-                    "        Etiam at turpis condimentum,\n" +
-                    "        pharetra enim sit amet, consectetur velit.\n" +
-                    "        Integer pellentesque nibh varius quam hendrerit,\n" +
-                    "        eget placerat orci porta."
+            "Bienvenidos a Koffer, gestionamos" +
+            "y nos hacemos cargo de la logistica de " +
+            "su equipaja de viaje para que usted pueda " +
+            "disfrute de su instancia sin preoucuparse de robos o extravios.",
+            "Disponemos del servicio de recogida de su" +
+            " equipaje en el aeropuerto y traslado a las " +
+            "instalaciones donde se hospedan los dueño de las maletas.",
+            "Disponemos de un amplio personal en se encarga de recoger, " +
+            " transpotar y entregar las maletas en las zonas assignadas" +
+            " de forma rapida y como para el consumidor"
     };
 
     @Override
