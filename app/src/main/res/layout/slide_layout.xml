@@ -8,6 +8,7 @@
 
     <ImageView
         android:id="@+id/slide_img"
+        android:contentDescription="@string/img_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="68dp"
@@ -41,9 +42,11 @@
         android:layout_marginBottom="110dp"
         android:gravity="center_horizontal"
         android:padding="50dp"
-        android:text="@string/lorem_ipsum"
+        android:text="@string/body_content"
         android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/slide_header" />
+        app:layout_constraintTop_toTopOf="@+id/slide_header"
+        app:layout_constraintVertical_bias="0.462" />
 </android.support.constraint.ConstraintLayout>

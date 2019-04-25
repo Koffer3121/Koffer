@@ -3,13 +3,8 @@
 
     <!-- Slide Layout -->
     <string name="header">HEADER</string>
-    <string name="lorem_ipsum">Lorem ipsum dolor sit amet,
-        consectetur adipiscing elit.
-        Etiam at turpis condimentum,
-        pharetra enim sit amet, consectetur velit.
-        Integer pellentesque nibh varius quam hendrerit,
-        eget placerat orci porta.
-    </string>
+    <string name="img_desc">Icon</string>
+    <string name="body_content">Body contente</string>
     <string name="next_btn">Siguiente</string>
     <string name="prev_btn">Atrás</string>
     <string name="finish_btn">Acabar</string>

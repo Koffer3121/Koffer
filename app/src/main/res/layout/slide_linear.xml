@@ -29,7 +29,7 @@
         android:id="@+id/slide_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/lorem_ipsum"
+        android:text="@string/body_content"
         android:gravity="center"
         android:layout_margin="50dp"/>
 </android.support.v7.widget.LinearLayoutCompat>
