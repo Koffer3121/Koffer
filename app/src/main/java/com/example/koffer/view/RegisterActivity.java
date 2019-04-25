@@ -1,62 +1,86 @@
 package com.example.koffer.view;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.koffer.MainActivity;
 import com.example.koffer.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
-import com.example.koffer.User;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private DatabaseReference mDatabase;
+    //Declaramos un objeto firebaseAuth
+    private FirebaseAuth firebaseAuth;
 
-    EditText correo, passwd1, passwd2, tel;
-    Button button;
-
-
-
+    private EditText email, passwd1;
+    private Button btnRegister;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        //inizializamos el objeto firebase Auth
+        firebaseAuth = FirebaseAuth.getInstance();
+//        mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        correo = findViewById(R.id.email);
+        email = findViewById(R.id.email);
         passwd1 = findViewById(R.id.pasword);
-        passwd2 = findViewById(R.id.pasword2);
-        tel = findViewById(R.id.tel);
-        button=findViewById(R.id.registrarse);
-        button.setOnClickListener(new View.OnClickListener() {
+        btnRegister = findViewById(R.id.registrarse);
+        progressDialog = new ProgressDialog(this);
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 registrarUsuario();
-                //falta comprobar que esta registrado correctamente y retornar al main
-                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                startActivity(intent);
             }
         });
     }
 
     public void registrarUsuario(){
-        // falta comprobar que ese usuario no este creado, que los campos esten llenos y que las contraseñas coincidan.
-        String email = correo.getText().toString();
-        String password = passwd1.getText().toString();
-        String password2 = passwd2.getText().toString();
-        String telephone = tel.getText().toString();
+        //.trim elimina espacios de delante y de detras del texto
+        String correo = email.getText().toString().trim();
+        String password = passwd1.getText().toString().trim();
 
+        if (TextUtils.isEmpty(correo) || TextUtils.isEmpty(password)){
+            Toast.makeText(this, "Se deben rellenar todos los campos", Toast.LENGTH_LONG).show();
+            return;
+        }
 
-        String id = mDatabase.push().getKey();
-        User user = new User(email, password, password2,telephone);
-        mDatabase.child("users").child(id).setValue(user);
+        progressDialog.setMessage("Realizando registro en linea...");
+        progressDialog.show();
+
+        firebaseAuth.createUserWithEmailAndPassword(correo, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(RegisterActivity.this, "Registro completado.", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }else {
+                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                        Toast.makeText(RegisterActivity.this, "Este usuario ya esta registrado!", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    }else {
+                        Toast.makeText(RegisterActivity.this, "No se puede registrar el usuario.", Toast.LENGTH_LONG).show();
+                    }
+                }
+                progressDialog.dismiss();
+            }
+        });
     }
 }
