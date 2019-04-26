@@ -58,7 +58,7 @@ public class SlideActivity extends AppCompatActivity {
         mFinishBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SlideActivity.this, Main2Activity.class);
+                Intent intent = new Intent(SlideActivity.this, TestingActivity.class);
                 startActivity(intent);
             }
         });
