@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "1007309884278",
+    "firebase_url": "https://koffer-3121.firebaseio.com",
+    "project_id": "koffer-3121",
+    "storage_bucket": "koffer-3121.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1007309884278:android:9008936be68bbc37",
+        "android_client_info": {
+          "package_name": "com.example.koffer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1007309884278-tiptoqjvigig7251cga5e8q5ph0bqt79.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.koffer",
+            "certificate_hash": "18a0cfca1a2f01eda5c1276125a748e844862a38"
+          }
+        },
+        {
+          "client_id": "1007309884278-n5ug4510sp4dskfjh4mgd86kelhhcvao.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.koffer",
+            "certificate_hash": "7c806bdc2f8157a4b1225ca6bf51239276181fa3"
+          }
+        },
+        {
+          "client_id": "1007309884278-gsbhm60f4u0c6753e33knsjrbi382v23.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuFjwEtskm-9YJ-qhKrbPVhgUlLr-Pu0U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1007309884278-gsbhm60f4u0c6753e33knsjrbi382v23.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
