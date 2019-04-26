@@ -65,8 +65,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     Toast.makeText(LoginActivity.this, "Bienvenido: " + email.getText(), Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(LoginActivity.this, SelectLoginActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, MainMenuActivity.class);
                     startActivity(intent);
+                    finish();
                 }else {
                     if (task.getException() instanceof FirebaseAuthInvalidUserException) {
                         Toast.makeText(LoginActivity.this, "Este usuario no esta registrado!", Toast.LENGTH_LONG).show();
