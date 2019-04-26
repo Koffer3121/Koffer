@@ -67,8 +67,8 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    Toast.makeText(RegisterActivity.this, "Registro completado.", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(RegisterActivity.this, SelectLoginActivity.class);
+                    Toast.makeText(RegisterActivity.this, "Registro completado, A continuacion inicie sesion.", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
                 }else {
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
