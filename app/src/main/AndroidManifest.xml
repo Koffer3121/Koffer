@@ -12,12 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainMenuActivity"
+            android:name=".view.MainMenuActivity"
             android:label="@string/title_activity_main_menu"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".SlideActivity" />
-        <activity android:name=".TestingActivity" />
-        <activity android:name=".SelectLoginActivity" />
+        <activity android:name=".view.SlideActivity" />
+        <activity android:name=".view.TestingActivity" />
+        <activity android:name=".view.SelectLoginActivity" />
         <activity android:name=".view.RegisterActivity" />
         <activity android:name=".view.LoginActivity" />
         <activity
