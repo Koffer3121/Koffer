@@ -30,26 +30,6 @@
         android:lines="1"
         android:textColorHint="@color/colorRLText"
         android:backgroundTint="@color/colorRLText"/>
-    <EditText
-        android:id="@+id/pasword2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:hint="Repetir Contraseña"
-        android:layout_marginTop="12dp"
-        android:lines="1"
-        android:textColorHint="@color/colorRLText"
-        android:backgroundTint="@color/colorRLText"/>
-    <EditText
-        android:id="@+id/tel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:hint="Telefono"
-        android:layout_marginTop="12dp"
-        android:lines="1"
-        android:textColorHint="@color/colorRLText"
-        android:backgroundTint="@color/colorRLText"/>
 
     <Button
         android:id="@+id/registrarse"

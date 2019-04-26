@@ -36,7 +36,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         //inizializamos el objeto firebase Auth
         firebaseAuth = FirebaseAuth.getInstance();
-//        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         email = findViewById(R.id.email);
         passwd1 = findViewById(R.id.pasword);
