@@ -1,4 +1,4 @@
-package com.example.koffer;
+package com.example.koffer.model;
 
 public class User {
     String email;
