@@ -5,7 +5,7 @@
     <string name="header">HEADER</string>
     <string name="img_desc">Icon</string>
     <string name="body_content">Body contente</string>
-    <string name="next_btn">Siguiente</string>
-    <string name="prev_btn">Atrás</string>
-    <string name="finish_btn">Acabar</string>
+    <string name="next_btn">SIGUIENTE</string>
+    <string name="prev_btn">ATRÁS</string>
+    <string name="finish_btn">ACABAR</string>
 </resources>

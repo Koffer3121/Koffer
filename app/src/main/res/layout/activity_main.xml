@@ -4,53 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_background"
-    tools:context=".MainActivity">
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/slideViewPager"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="31dp"
-        app:layout_constraintBottom_toTopOf="@+id/dotsLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></android.support.v4.view.ViewPager>
-
-    <LinearLayout
-        android:id="@+id/dotsLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/slideViewPager"></LinearLayout>
-
-    <Button
-        android:id="@+id/prevBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
-        android:background="@null"
-        android:text="@string/prev_btn"
-        android:textColor="@color/colorWhite"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/slideViewPager" />
-
-    <Button
-        android:id="@+id/nextBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
-        android:layout_marginBottom="2dp"
-        android:background="@null"
-        android:text="@string/next_btn"
-        android:textColor="@color/colorWhite"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/slideViewPager" />
+    tools:context=".SlideActivity">
 
 </android.support.constraint.ConstraintLayout>
