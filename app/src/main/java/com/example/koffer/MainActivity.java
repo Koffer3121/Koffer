@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.koffer.view.SlideActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -14,5 +16,6 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(MainActivity.this, SlideActivity.class);
         startActivity(intent);
+        finish();
     }
 }
