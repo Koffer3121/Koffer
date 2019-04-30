@@ -1,4 +1,4 @@
-package com.example.koffer;
+package com.example.koffer.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.koffer.R;
+import com.example.koffer.SlideAdapter;
 
 public class SlideActivity extends AppCompatActivity {
     private ViewPager mSlideViewPager;

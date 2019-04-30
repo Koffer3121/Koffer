@@ -1,7 +1,9 @@
-package com.example.koffer;
+package com.example.koffer.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.koffer.R;
 
 public class TestingActivity extends AppCompatActivity {
 
