@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.koffer.R;
@@ -17,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
     //Declaramos un objeto firebaseAuth
@@ -38,14 +40,14 @@ public class LoginActivity extends AppCompatActivity {
         passwd = findViewById(R.id.pasword);
         progressDialog = new ProgressDialog(this);
 
-        btnLogin=findViewById(R.id.btnLogin);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                login();
-            }
-        });
-    }
+        btnLogin = findViewById(R.id.btnLogin);
+            btnLogin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    login();
+                }
+            });
+        }
 
     public void login(){
         final String correo = email.getText().toString().trim();
@@ -64,17 +66,24 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    Toast.makeText(LoginActivity.this, "Bienvenido: " + email.getText(), Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(LoginActivity.this, MainMenuActivity.class);
-                    startActivity(intent);
-                    finish();
-                }else {
+                    if (userIsTransportist) {
+                        Toast.makeText(LoginActivity.this, "Bienvenido: " + email.getText(), Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(LoginActivity.this, MainMenuActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Bienvenido: " + email.getText(), Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(LoginActivity.this, MainMenuActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                } else {
                     if (task.getException() instanceof FirebaseAuthInvalidUserException) {
-                        Toast.makeText(LoginActivity.this, "Este usuario no esta registrado!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, "Este usuario no está registrado!", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                         startActivity(intent);
-                    }else {
-                        Toast.makeText(LoginActivity.this, "No se pudo iniciar sesion.", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "No se pudo iniciar sesión.", Toast.LENGTH_LONG).show();
                     }
                 }
                 progressDialog.dismiss();
@@ -82,4 +91,5 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
 }

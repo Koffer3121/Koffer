@@ -1,6 +1,8 @@
 package com.example.koffer.view;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +19,15 @@ public class SelectLoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_login);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+
+//        if (sharedPreferences.getBoolean("IS_LOGIN",true)){
+//            sharedPreferences.edit().putBoolean("IS_LOGIN", false).apply();
+//        } else {
+//            startActivity(new Intent(this, MainMenuActivity.class));
+//            finish();
+//        }
 
         registro = findViewById(R.id.register);
         registro.setOnClickListener(new View.OnClickListener() {
