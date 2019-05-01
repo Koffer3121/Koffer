@@ -13,6 +13,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.koffer.R;
+import com.example.koffer.TrackingActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -66,17 +67,17 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    if (userIsTransportist) {
+//                    if (userIsTransportist) {
                         Toast.makeText(LoginActivity.this, "Bienvenido: " + email.getText(), Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(LoginActivity.this, MainMenuActivity.class);
                         startActivity(intent);
                         finish();
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Bienvenido: " + email.getText(), Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(LoginActivity.this, MainMenuActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
+//                    } else {
+//                        Toast.makeText(LoginActivity.this, "Bienvenido: " + email.getText(), Toast.LENGTH_LONG).show();
+//                        Intent intent = new Intent(LoginActivity.this, MainMenuActivity.class);
+//                        startActivity(intent);
+//                        finish();
+//                    }
                 } else {
                     if (task.getException() instanceof FirebaseAuthInvalidUserException) {
                         Toast.makeText(LoginActivity.this, "Este usuario no está registrado!", Toast.LENGTH_LONG).show();
