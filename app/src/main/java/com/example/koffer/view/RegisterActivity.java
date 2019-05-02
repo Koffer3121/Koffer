@@ -17,12 +17,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class RegisterActivity extends AppCompatActivity {
 
     //Declaramos un objeto firebaseAuth
     private FirebaseAuth firebaseAuth;
+    private DatabaseReference mRef;
 
     private EditText email, passwd1;
     private Button btnRegister;
@@ -35,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         //inizializamos el objeto firebase Auth
         firebaseAuth = FirebaseAuth.getInstance();
+        mRef = FirebaseDatabase.getInstance().getReference();
 
         email = findViewById(R.id.email);
         passwd1 = findViewById(R.id.pasword);
@@ -65,9 +70,16 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
+                    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+                    mRef.child("users").child(firebaseUser.getUid()).child("email").setValue(firebaseUser.getEmail());
+                    mRef.child("users").child(firebaseUser.getUid()).child("isTransportist").setValue(false);
+
                     Toast.makeText(RegisterActivity.this, "Registro completado, A continuacion inicie sesion.", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
+
+
                 }else {
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                         Toast.makeText(RegisterActivity.this, "Este usuario ya esta registrado!", Toast.LENGTH_LONG).show();
