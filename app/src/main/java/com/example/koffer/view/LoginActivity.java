@@ -3,6 +3,7 @@ package com.example.koffer.view;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -69,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (task.isSuccessful()){
 //                    if (userIsTransportist) {
                         Toast.makeText(LoginActivity.this, "Bienvenido: " + email.getText(), Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(LoginActivity.this, MainMenuActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, BottomNavigationViewActivity.class);
                         startActivity(intent);
                         finish();
 //                    } else {

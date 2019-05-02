@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TabThree">
+    tools:context=".fragment.TabThree">
 
-    <!-- TODO: Update blank fragment layout -->
-   <com.google.android.gms.maps.MapView
-       android:id="@+id/map"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
+    <!--&lt;!&ndash; TODO: Update blank fragment layout &ndash;&gt;-->
+   <!--<com.google.android.gms.maps.MapView-->
+       <!--android:id="@+id/map"-->
+       <!--android:layout_width="match_parent"-->
+       <!--android:layout_height="match_parent">-->
 
-   </com.google.android.gms.maps.MapView>
+   <!--</com.google.android.gms.maps.MapView>-->
 
 </FrameLayout>
