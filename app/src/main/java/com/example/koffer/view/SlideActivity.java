@@ -36,8 +36,9 @@ public class SlideActivity extends AppCompatActivity {
 
         if (sharedPreferences.getBoolean("FIRST_RUN",true)){
             sharedPreferences.edit().putBoolean("FIRST_RUN", false).apply();
-        }else {
+        } else {
             startActivity(new Intent(this, SelectLoginActivity.class));
+            finish();
         }
 
         mSlideViewPager = (ViewPager) findViewById(R.id.slideViewPager);
@@ -73,6 +74,7 @@ public class SlideActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SlideActivity.this, SelectLoginActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -114,7 +116,7 @@ public class SlideActivity extends AppCompatActivity {
                 mFinishBtn.setVisibility(View.INVISIBLE);
                 mPrevBtn.setVisibility(View.INVISIBLE);
                 mNextBtn.setVisibility(View.VISIBLE);
-            }else if (i == mDots.length - 1) {
+            } else if (i == mDots.length - 1) {
                 mNextBtn.setEnabled(false);
                 mPrevBtn.setEnabled(true);
                 mFinishBtn.setEnabled(true);

@@ -5,6 +5,7 @@ public class User {
     String password;
     String password2;
     String tel;
+    boolean isTransportist;
 
     public User(String email, String password, String password2, String tel) {
         this.email = email;

@@ -32,7 +32,6 @@
         android:textColorHint="@color/colorRLText"
         android:backgroundTint="@color/colorRLText"/>
 
-
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
@@ -42,5 +41,7 @@
         android:layout_marginTop="60dp"
         android:textColor="@color/colorRLText"
         android:textStyle="bold"/>
+
+
 
 </LinearLayout>
