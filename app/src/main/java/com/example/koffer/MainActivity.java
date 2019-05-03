@@ -33,5 +33,5 @@ public class MainActivity extends AppCompatActivity {
 //    String suitcaseKey = getReference().push().getKey();
 //    getReference().child("suitcase").child(suitcaseKey).setValue(suitcase);
 //    Ref().child("user-suicase").child(uid).child(suitcaseKey).setValue(true);
-//    }
+//     }
 }
