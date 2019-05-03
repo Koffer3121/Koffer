@@ -54,6 +54,12 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/serviceContract"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CONTRATAR"/>
+
     </LinearLayout>
 
 </FrameLayout>

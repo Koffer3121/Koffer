@@ -8,22 +8,41 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class TabTwo extends Fragment {
+    public TabTwo() { }
 
-
-    public TabTwo() {
-        // Required empty public constructor
-    }
-
+    String uid;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab_two, container, false);
+        View view = inflater.inflate(R.layout.fragment_tab_two, container, false);
+
+        //uid = getCurrent.guid()
+
+//        view.findViewById();
+
+        // this   =>   getActivity()
+
+        /*
+            nclick(){
+                saco los dato
+
+                long =
+                lat  =
+                canti =
+
+                String suitcaseKey = getReference().push().getKey();
+
+                getReference().child("suitcase").child(suitcaseKey).setValue(suitcase);
+                Ref().child("user-suicase").child(uid).child(suitcaseKey).setValue(true);
+
+            }
+
+
+         */
+
+        return view;
     }
 
 }

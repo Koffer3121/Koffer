@@ -33,7 +33,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TabThree extends Fragment implements OnMapReadyCallback  {
+public class TabMap extends Fragment implements OnMapReadyCallback  {
 
     GoogleMap mGoogleMap;
     MapView mMapView;
@@ -44,7 +44,7 @@ public class TabThree extends Fragment implements OnMapReadyCallback  {
 
     private ArrayList<Marker> realTimeMarkers = new ArrayList<>();
 
-    public TabThree() {
+    public TabMap() {
         // Required empty public constructor
     }
 

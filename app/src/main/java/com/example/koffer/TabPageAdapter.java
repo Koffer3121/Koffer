@@ -1,6 +1,5 @@
 package com.example.koffer;
 
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -29,8 +28,8 @@ public class TabPageAdapter extends FragmentStatePagerAdapter {
                 TabTwo tabTwo = new TabTwo();
                 return tabTwo;
             case 2:
-                TabThree tabThree = new TabThree();
-                return tabThree;
+                TabMap tabMap = new TabMap();
+                return tabMap;
         }
         return null;
     }
