@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#d5f5e3</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <!-- Main theme -->
+    <color name="colorPrimary">#1d8348</color>
+    <color name="primaryLightColor">#55b374</color>
+    <color name="colorPrimaryDark">#00551f</color>
+    <color name="secondaryColor">#424949</color>
+    <color name="secondaryLightColor">#6d7474</color>
+    <color name="secondaryDarkColor">#1b2222</color>
+
+    <!-- Text Color -->
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="secondaryTextColor">#ffffff</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorTransparentWhite">#CCCCCC</color>
+
+    <!-- Button Color -->
     <color name="colorRLButton">#43000000</color>
     <color name="colorRLText">#FFFFFF</color>
 </resources>
