@@ -1,9 +1,8 @@
 package com.example.koffer.fragment;
 
+
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +26,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
 public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     GoogleMap mGoogleMap;
@@ -38,10 +41,17 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     private ArrayList<Marker> realTimeMarkers = new ArrayList<>();
 
-    @Nullable
+    public MapFragment() {
+        // Required empty public constructor
+    }
+
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_map, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        mView = inflater.inflate(R.layout.fragment_map, container, false);
+        return mView;
     }
 
     @Override
