@@ -3,10 +3,7 @@ package com.example.koffer;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import com.example.koffer.view.BottomNavigationViewActivity;
 import com.example.koffer.view.LoginActivity;
-import com.example.koffer.view.SlideActivity;
 
 public class MainActivity extends AppCompatActivity {
 
