@@ -49,7 +49,7 @@ public class BottomNavigationViewActivity extends AppCompatActivity {
 
                     }
                     if (selectedFragment != null) {
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_enter, R.anim.fade_exit).replace(R.id.fragment_container,
                                 selectedFragment).commit();
                     }
 

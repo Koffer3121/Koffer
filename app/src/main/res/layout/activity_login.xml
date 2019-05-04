@@ -8,7 +8,6 @@
     android:layout_height="match_parent"
     tools:context=".view.LoginActivity"
     android:orientation="vertical"
-    android:background="@color/colorPrimary"
     android:padding="25dp">
 
     <EditText
@@ -17,9 +16,7 @@
         android:layout_height="wrap_content"
         android:hint="Email"
         android:layout_marginTop="30dp"
-        android:inputType="textEmailAddress"
-        android:textColorHint="@color/colorRLText"
-        android:backgroundTint="@color/colorRLText"/>
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/pasword"
@@ -28,18 +25,14 @@
         android:inputType="textPassword"
         android:hint="Contraseña"
         android:layout_marginTop="12dp"
-        android:lines="1"
-        android:textColorHint="@color/colorRLText"
-        android:backgroundTint="@color/colorRLText"/>
+        android:lines="1" />
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Iniciar Sesion"
-        android:background="@color/colorRLButton"
         android:layout_marginTop="60dp"
-        android:textColor="@color/colorRLText"
         android:textStyle="bold"/>
 
 

@@ -13,7 +13,7 @@
     <color name="secondaryTextColor">#ffffff</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorWhite">#FFFFFF</color>
-    <color name="colorTransparentWhite">#CCCCCC</color>
+    <color name="colorTransparentWhite">#80FFFFFF</color>
 
     <!-- Button Color -->
     <color name="colorRLButton">#43000000</color>
