@@ -12,13 +12,27 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.koffer.R;
+import com.example.koffer.model.UserInformation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
+    private static final String TAG = "Provider";
+    private static final String UID = "UID";
+    private static final String IST = "isTransporist";
+
+    private static final String USERS_REFERENCE = "users";
+
     //Declaramos un objeto firebaseAuth
     private FirebaseAuth firebaseAuth;
 
@@ -30,7 +44,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //inizializamos el objeto firebase Auth
         firebaseAuth = FirebaseAuth.getInstance();
 
         email = findViewById(R.id.email);
@@ -63,17 +76,29 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-//                    if (userIsTransportist) {
-                        Toast.makeText(LoginActivity.this, "Bienvenido: " + email.getText(), Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(LoginActivity.this, BottomNavigationViewActivity.class);
-                        startActivity(intent);
-                        finish();
-//                    } else {
-//                        Toast.makeText(LoginActivity.this, "Bienvenido: " + email.getText(), Toast.LENGTH_LONG).show();
-//                        Intent intent = new Intent(LoginActivity.this, MainMenuActivity.class);
-//                        startActivity(intent);
-//                        finish();
-//                    }
+
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    if (user != null) {
+                        String userUid = "";
+                        for (UserInfo profile : user.getProviderData()) {
+                            userUid = profile.getUid();
+                        }
+
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        DatabaseReference myRef = database.getReference(USERS_REFERENCE);
+                        myRef.child(userUid).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                UserInformation user = dataSnapshot.getValue(UserInformation.class);
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
                 } else {
                     if (task.getException() instanceof FirebaseAuthInvalidUserException) {
                         Toast.makeText(LoginActivity.this, "Este usuario no está registrado!", Toast.LENGTH_LONG).show();
@@ -88,5 +113,4 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
-
 }
