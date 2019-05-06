@@ -2,10 +2,12 @@ package com.example.koffer.view;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.provider.Contacts;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -76,29 +78,55 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     if (user != null) {
-                        String userUid = "";
-                        for (UserInfo profile : user.getProviderData()) {
-                            userUid = profile.getUid();
-                        }
+                        String uid = user.getUid();
+
+                        Log.d(UID, uid);
 
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                         DatabaseReference myRef = database.getReference(USERS_REFERENCE);
-                        myRef.child(userUid).addListenerForSingleValueEvent(new ValueEventListener() {
+                        myRef.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 UserInformation user = dataSnapshot.getValue(UserInformation.class);
+
+                                boolean value = user.isTransportist;
+
+                                Log.d("isCarrier", String.valueOf(value));
+
+                                if (value) {
+                                    Intent intent = new Intent(getApplicationContext(), TestingActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    Intent intent = new Intent(getApplicationContext(), BottomNavigationViewActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+
 
                             }
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                                Log.e("ERROR", "Error en hacer el listener");
                             }
                         });
                     }
+                    String uid;
+//    uid = getCurrent.guid()
+//    view.findViewById();
+//    this   =>   getActivity()
+//    nclick(){
+//    saco los dato
+//    long =
+//    lat  =
+//    canti =
+//    String suitcaseKey = getReference().push().getKey();
+//    getReference().child("suitcase").child(suitcaseKey).setValue(suitcase);
+//    Ref().child("user-suicase").child(uid).child(suitcaseKey).setValue(true);
+
                 } else {
                     if (task.getException() instanceof FirebaseAuthInvalidUserException) {
                         Toast.makeText(LoginActivity.this, "Este usuario no está registrado!", Toast.LENGTH_LONG).show();
