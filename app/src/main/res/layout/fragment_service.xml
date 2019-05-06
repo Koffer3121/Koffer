@@ -41,19 +41,25 @@
             android:layout_height="match_parent">
 
             <EditText
+                android:id="@+id/quantity"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:hint="Quantity" />
 
             <EditText
+                android:id="@+id/kg"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:hint="Weight (KG)" />
 
         </LinearLayout>
-
+        <Button
+            android:id="@+id/service"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Solicitar Servicio"/>
     </LinearLayout>
 
 </FrameLayout>
