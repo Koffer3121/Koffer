@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main theme -->
-    <color name="colorPrimary">#1d8348</color>
-    <color name="primaryLightColor">#55b374</color>
-    <color name="colorPrimaryDark">#00551f</color>
+    <color name="colorPrimary">#1D8348</color>
+    <color name="primaryLightColor">#55B374</color>
+    <color name="colorPrimaryDark">#00551F</color>
     <color name="secondaryColor">#424949</color>
     <color name="secondaryLightColor">#6d7474</color>
     <color name="secondaryDarkColor">#1b2222</color>
 
     <!-- Text Color -->
-    <color name="primaryTextColor">#ffffff</color>
-    <color name="secondaryTextColor">#ffffff</color>
+    <color name="primaryTextColor">#FFFFFF</color>
+    <color name="secondaryTextColor">#000000</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorTransparentWhite">#80FFFFFF</color>

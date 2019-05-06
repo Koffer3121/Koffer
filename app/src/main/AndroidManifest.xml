@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TrackingActivity"></activity>
+        <activity android:name=".TrackingActivity" />
         <activity android:name=".view.SlideActivity" />
         <activity android:name=".view.TestingActivity" />
         <activity android:name=".view.BottomNavigationViewActivity" />
@@ -28,12 +28,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!--Maps Android Key-->
+        </activity> <!-- Maps Android Key -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCQJXpAJLALRBTMRP0pg0oVKQiVG9Jn_WU" />
-        <!--Maps-->
     </application>
 
 </manifest>

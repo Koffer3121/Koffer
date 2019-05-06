@@ -2,7 +2,6 @@ package com.example.koffer.view;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.provider.Contacts;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,124 +20,116 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import es.dmoral.toasty.Toasty;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final String TAG = "Provider";
-    private static final String UID = "UID";
-    private static final String IST = "isTransporist";
 
     private static final String USERS_REFERENCE = "users";
 
-    //Declaramos un objeto firebaseAuth
     private FirebaseAuth firebaseAuth;
 
-    private EditText email, passwd;
+    private EditText email, password;
     private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        setupComponents();
+    }
 
+    private void setupComponents() {
         firebaseAuth = FirebaseAuth.getInstance();
 
         email = findViewById(R.id.email);
-        passwd = findViewById(R.id.pasword);
+        password = findViewById(R.id.pasword);
         progressDialog = new ProgressDialog(this);
-
         Button btnLogin = findViewById(R.id.btnLogin);
-            btnLogin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    login();
-                }
-            });
-        }
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login();
+            }
+        });
+    }
 
     public void login(){
-        final String correo = email.getText().toString().trim();
-        String password = passwd.getText().toString().trim();
+        final String email = this.email.getText().toString().trim();
+        String password = this.password.getText().toString().trim();
 
-        if (TextUtils.isEmpty(correo) || TextUtils.isEmpty(password)){
-            Toast.makeText(this, "Se deben rellenar todos los campos", Toast.LENGTH_LONG).show();
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
+            Toast.makeText(this, getString(R.string.empty_fields), Toast.LENGTH_LONG).show();
             return;
+        } else {
+            progressDialog.setMessage(getString(R.string.logging_in));
+            progressDialog.show();
         }
 
-        progressDialog.setMessage("Iniciando sesion...");
-        progressDialog.show();
-
-
-        firebaseAuth.signInWithEmailAndPassword(correo, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     if (user != null) {
-                        String uid = user.getUid();
-
-                        Log.d(UID, uid);
-
+                        String userUid = user.getUid();
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                         DatabaseReference myRef = database.getReference(USERS_REFERENCE);
-                        myRef.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+                        myRef.child(userUid).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                UserInformation user = dataSnapshot.getValue(UserInformation.class);
-
-                                boolean value = user.isTransportist;
-
-                                Log.d("isCarrier", String.valueOf(value));
-
-                                if (value) {
-                                    Intent intent = new Intent(getApplicationContext(), TestingActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    Intent intent = new Intent(getApplicationContext(), BottomNavigationViewActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
-
-
+                                getUserInformationAndDecideWhereTheUserShouldGo(dataSnapshot);
                             }
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
-                                Log.e("ERROR", "Error en hacer el listener");
+                                Log.e("ERROR", "Error al hacer el addListenerForSingleValueEvent");
                             }
                         });
                     }
-                    String uid;
-//    uid = getCurrent.guid()
-//    view.findViewById();
-//    this   =>   getActivity()
-//    nclick(){
-//    saco los dato
-//    long =
-//    lat  =
-//    canti =
-//    String suitcaseKey = getReference().push().getKey();
-//    getReference().child("suitcase").child(suitcaseKey).setValue(suitcase);
-//    Ref().child("user-suicase").child(uid).child(suitcaseKey).setValue(true);
 
                 } else {
                     if (task.getException() instanceof FirebaseAuthInvalidUserException) {
-                        Toast.makeText(LoginActivity.this, "Este usuario no está registrado!", Toast.LENGTH_LONG).show();
+                        Toasty.error(getApplicationContext(), getString(R.string.user_not_registered), Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                         startActivity(intent);
                     } else {
-                        Toast.makeText(LoginActivity.this, "No se pudo iniciar sesión.", Toast.LENGTH_LONG).show();
+                        Toasty.error(getApplicationContext(), getString(R.string.logging_in_error), Toast.LENGTH_LONG).show();
                     }
                 }
                 progressDialog.dismiss();
             }
         });
 
+    }
+
+    private void getUserInformationAndDecideWhereTheUserShouldGo(@NonNull DataSnapshot dataSnapshot) {
+        UserInformation userInf = dataSnapshot.getValue(UserInformation.class);
+        if (userInf != null) {
+            try {
+                boolean value = userInf.isTransportist;
+                if (value) {
+                    Toasty.success(getApplicationContext(),
+                            getString(R.string.welcome) + " " + email.getText().toString().trim(),
+                            Toast.LENGTH_SHORT, true).show();
+                    Intent intent = new Intent(getApplicationContext(), TestingActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toasty.success(getApplicationContext(),
+                            getString(R.string.welcome) + " " + email.getText().toString().trim(),
+                            Toast.LENGTH_SHORT, true).show();
+                    Intent intent = new Intent(getApplicationContext(), BottomNavigationViewActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            } catch (Exception e) {
+                Toasty.error(getApplicationContext(), getString(R.string.logging_in_error), Toasty.LENGTH_SHORT).show();
+            }
+        }
     }
 }
