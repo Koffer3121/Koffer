@@ -30,13 +30,16 @@ public class SelectLoginActivity extends AppCompatActivity {
 //            finish();
 //        }
 
+        setupComponents();
+    }
+
+    private void setupComponents() {
         registro = findViewById(R.id.register);
         registro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SelectLoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
-
             }
         });
 
@@ -46,7 +49,6 @@ public class SelectLoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SelectLoginActivity.this, LoginActivity.class);
                 startActivity(intent);
-
             }
         });
     }
