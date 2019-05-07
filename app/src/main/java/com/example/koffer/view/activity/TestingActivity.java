@@ -1,4 +1,4 @@
-package com.example.koffer.view;
+package com.example.koffer.view.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

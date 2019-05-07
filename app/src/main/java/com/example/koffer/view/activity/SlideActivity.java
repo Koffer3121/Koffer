@@ -1,4 +1,4 @@
-package com.example.koffer.view;
+package com.example.koffer.view.activity;
 
 import android.content.Context;
 import android.content.Intent;

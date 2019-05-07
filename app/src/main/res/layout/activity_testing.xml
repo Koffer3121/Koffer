@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_light"
-    tools:context=".view.TestingActivity">
+    tools:context=".view.activity.TestingActivity">
 
     <TextView
         android:id="@+id/textView"

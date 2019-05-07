@@ -1,4 +1,4 @@
-package com.example.koffer.view;
+package com.example.koffer.view.activity;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.koffer.R;
-import com.example.koffer.fragment.HomeFragment;
-import com.example.koffer.fragment.MapFragment;
-import com.example.koffer.fragment.ServiceFragment;
+import com.example.koffer.view.fragment.HomeFragment;
+import com.example.koffer.view.fragment.MapFragment;
+import com.example.koffer.view.fragment.ServiceFragment;
 
 public class BottomNavigationViewActivity extends AppCompatActivity {
 
