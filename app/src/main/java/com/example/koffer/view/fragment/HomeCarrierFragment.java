@@ -1,8 +1,9 @@
-package com.example.koffer.view.activity;
+package com.example.koffer.view.fragment;
 
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,28 +21,38 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-public class CarrierActivity extends AppCompatActivity {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class HomeCarrierFragment extends Fragment {
 
     public static final String SUITCASE_REFERENCE = "suitcase";
-
     public DatabaseReference mReference;
     public FirebaseUser mUser;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_carrier);
+    public HomeCarrierFragment() {
+        // Required empty public constructor
+    }
 
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_home_carrier, container, false);
+        setupComponents(view);
+        return view;
+    }
+
+    private void setupComponents(View view) {
         mReference = FirebaseDatabase.getInstance().getReference();
         mUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Suitcase>()
+        FirebaseRecyclerOptions<Suitcase> options = new FirebaseRecyclerOptions.Builder<Suitcase>()
                 .setIndexedQuery(setQuery(), mReference.child(SUITCASE_REFERENCE), Suitcase.class)
                 .setLifecycleOwner(this)
                 .build();
 
-        RecyclerView recyclerView = findViewById(R.id.suitcase_list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerView recyclerView = view.findViewById(R.id.suitcase_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(new FirebaseRecyclerAdapter<Suitcase, SuitcaseViewHolder>(options) {
             @NonNull
             @Override
@@ -64,4 +75,5 @@ public class CarrierActivity extends AppCompatActivity {
     Query setQuery(){
         return  mReference.child(SUITCASE_REFERENCE).limitToFirst(100);
     }
+
 }

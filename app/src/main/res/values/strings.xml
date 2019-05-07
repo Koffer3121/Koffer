@@ -30,5 +30,19 @@
     <string name="suitcase_quantity">Suitcase Quantity</string>
     <string name="suitcase_kg">Suitcase KG</string>
 
+    <!-- Login and Register-->
+    <string name="welcome_title_login">¡Bienvenido!</string>
+    <string name="welcome_subtitle_login">Inicia sesión con tu correo para empezar</string>
+    <string name="welcome_title_register">Crea una cuenta</string>
+    <string name="email">Email</string>
+    <string name="password">· · · · · · ·</string>
+    <string name="remember_pass">Recordar Contraseña</string>
+    <string name="log_in">INICIAR SESIÓN</string>
+    <string name="sing_in">CREAR CUENTA</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

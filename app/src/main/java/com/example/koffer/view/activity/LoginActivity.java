@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
         email = findViewById(R.id.email);
-        password = findViewById(R.id.pasword);
+        password = findViewById(R.id.password);
         progressDialog = new ProgressDialog(this);
         Button btnLogin = findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -115,14 +115,14 @@ public class LoginActivity extends AppCompatActivity {
                 Toasty.success(getApplicationContext(),
                         getString(R.string.welcome) + " " + email.getText().toString().trim(),
                         Toast.LENGTH_SHORT, true).show();
-                Intent intent = new Intent(getApplicationContext(), CarrierActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CarrierViewActivity.class);
                 startActivity(intent);
                 finish();
             } else {
                 Toasty.success(getApplicationContext(),
                         getString(R.string.welcome) + " " + email.getText().toString().trim(),
                         Toast.LENGTH_SHORT, true).show();
-                Intent intent = new Intent(getApplicationContext(), BottomNavigationViewActivity.class);
+                Intent intent = new Intent(getApplicationContext(), UserViewActivity.class);
                 startActivity(intent);
                 finish();
             }

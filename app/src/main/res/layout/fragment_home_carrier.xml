@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.CarrierActivity">
+    tools:context=".view.fragment.HomeCarrierFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/suitcase_list"
@@ -12,4 +11,4 @@
         android:layout_height="match_parent"
         android:scrollbars="vertical" />
 
-</android.support.constraint.ConstraintLayout>
+</FrameLayout>

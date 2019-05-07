@@ -1,34 +1,34 @@
 package com.example.koffer.view.activity;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.koffer.R;
-import com.example.koffer.view.fragment.HomeFragment;
-import com.example.koffer.view.fragment.MapFragment;
+import com.example.koffer.view.fragment.HomeCarrierFragment;
+import com.example.koffer.view.fragment.MoreCarrierFragment;
 import com.example.koffer.view.fragment.ServiceFragment;
 
-public class BottomNavigationViewActivity extends AppCompatActivity {
+public class CarrierViewActivity extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bottom_navigation_view);
-
-
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-        bottomNav.setOnNavigationItemSelectedListener(navListenerUser);
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new HomeFragment()).commit();
-
+        setContentView(R.layout.activity_carrier_view);
+        setupComponents();
     }
 
+    private void setupComponents() {
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation_carrier);
+        bottomNav.setOnNavigationItemSelectedListener(navListenerUser);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_carrier,
+                new HomeCarrierFragment()).commit();
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListenerUser =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -38,22 +38,22 @@ public class BottomNavigationViewActivity extends AppCompatActivity {
 
                     switch (item.getItemId()) {
                         case R.id.nav_home:
-                            selectedFragment = new HomeFragment();
+                            selectedFragment = new HomeCarrierFragment();
                             break;
                         case R.id.nav_service:
                             selectedFragment = new ServiceFragment();
                             break;
-                        case R.id.nav_maps:
-                            selectedFragment = new MapFragment();
+                        case R.id.nav_more:
+                            selectedFragment = new MoreCarrierFragment();
                             break;
 
                     }
                     if (selectedFragment != null) {
-                        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_enter, R.anim.fade_exit).replace(R.id.fragment_container,
+                        getSupportFragmentManager().beginTransaction()
+                                .setCustomAnimations(R.anim.fade_enter, R.anim.fade_exit)
+                                .replace(R.id.fragment_container_carrier,
                                 selectedFragment).commit();
                     }
-
-
                     return true;
                 }
             };
