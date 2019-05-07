@@ -8,16 +8,18 @@ public class SuitCase {
     String dni;
     String quantity;
     String kg;
-    String address;
+    String pickUpAddress;
+    String deliveryAddress;
 
-    public SuitCase(String name, String email, String telephone, String dni, String quantity, String kg, String address) {
+    public SuitCase(String name, String email, String telephone, String dni, String quantity, String kg, String deliveryAddress, String pickUpAddress) {
         this.name = name;
         this.email = email;
         this.telephone = telephone;
         this.dni = dni;
         this.quantity = quantity;
         this.kg = kg;
-        this.address = address;
+        this.pickUpAddress = pickUpAddress;
+        this.deliveryAddress = deliveryAddress;
     }
 
     public String getName() {
@@ -44,7 +46,11 @@ public class SuitCase {
         return kg;
     }
 
-    public String getAddress() {
-        return address;
+    public String getDeliveryAddress() {
+        return deliveryAddress;
+    }
+
+    public String getPickUpAddress() {
+        return pickUpAddress;
     }
 }

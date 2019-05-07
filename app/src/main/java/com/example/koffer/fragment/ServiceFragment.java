@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.example.koffer.R;
 import com.example.koffer.model.SuitCase;
-import com.google.android.gms.maps.MapView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -29,7 +28,8 @@ public class ServiceFragment extends Fragment {
     EditText dni;
     EditText cantidad;
     EditText peso;
-    EditText direccion;
+    EditText direccionRecogida;
+    EditText direccionEntrega;
     Button btnService;
 
     private DatabaseReference mdatabase;
@@ -47,7 +47,8 @@ public class ServiceFragment extends Fragment {
         dni = view.findViewById(R.id.dni);
         cantidad = view.findViewById(R.id.quantity);
         peso = view.findViewById(R.id.kg);
-        direccion = view.findViewById(R.id.address);
+        direccionRecogida = view.findViewById(R.id.pickUpAddress);
+        direccionEntrega = view.findViewById(R.id.deliveryAddress);
 
         btnService = view.findViewById(R.id.service);
 
@@ -69,14 +70,15 @@ public class ServiceFragment extends Fragment {
         String dniString = dni.getText().toString();
         String quanity = cantidad.getText().toString();
         String kg = peso.getText().toString();
-        String address = direccion.getText().toString();
+        String pickUpAddress = direccionRecogida.getText().toString();
+        String deliveryAddress = direccionEntrega.getText().toString();
 
-        if (!TextUtils.isEmpty(name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(phone) || !TextUtils.isEmpty(dniString) || !TextUtils.isEmpty(quanity) || !TextUtils.isEmpty(kg) || !TextUtils.isEmpty(address)){
+        if (!TextUtils.isEmpty(name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(phone) || !TextUtils.isEmpty(dniString) || !TextUtils.isEmpty(quanity) || !TextUtils.isEmpty(kg) || !TextUtils.isEmpty(pickUpAddress) || !TextUtils.isEmpty((deliveryAddress))){
             String key = mdatabase.push().getKey();
-            SuitCase suitCase = new SuitCase(name,email,phone,dniString,quanity,kg,address);
+            SuitCase suitCase = new SuitCase(name, email, phone, dniString, quanity, kg, pickUpAddress, deliveryAddress);
             mdatabase.child("suitcase").child(key).setValue(suitCase);
             mdatabase.child("user-suitcase").child(uid).child(key).setValue(true);
-            Toast.makeText(getActivity(), "Peticion Aceptada", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Petición aceptada", Toast.LENGTH_LONG).show();
 
         } else {
             Toast.makeText(getActivity(), "Debes completar todos los campos", Toast.LENGTH_LONG).show();

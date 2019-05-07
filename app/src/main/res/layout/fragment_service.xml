@@ -56,11 +56,18 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/address"
+            android:id="@+id/pickUpAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:hint="Dirección de recogida" />
+
+        <EditText
+            android:id="@+id/deliveryAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:hint="Dirección de entrega" />
 
         <Button
             android:id="@+id/service"
