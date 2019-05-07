@@ -1,4 +1,4 @@
-package com.example.koffer.fragment;
+package com.example.koffer.view.fragment;
 
 
 import android.os.Bundle;

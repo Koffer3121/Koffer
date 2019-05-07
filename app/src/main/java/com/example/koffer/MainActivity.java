@@ -4,10 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.koffer.view.BottomNavigationViewActivity;
-import com.example.koffer.view.LoginActivity;
-import com.example.koffer.view.SelectLoginActivity;
-import com.example.koffer.view.SlideActivity;
+import com.example.koffer.view.activity.SelectLoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 
