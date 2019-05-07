@@ -53,13 +53,20 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:hint="Weight (KG)" />
-
         </LinearLayout>
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:hint="Dirección de recogida" />
+
         <Button
             android:id="@+id/service"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Solicitar Servicio"/>
+            android:text="Solicitar Servicio" />
     </LinearLayout>
 
 </FrameLayout>

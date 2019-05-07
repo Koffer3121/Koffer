@@ -8,14 +8,16 @@ public class SuitCase {
     String dni;
     String quantity;
     String kg;
+    String address;
 
-    public SuitCase(String name, String email, String telephone, String dni, String quantity, String kg) {
+    public SuitCase(String name, String email, String telephone, String dni, String quantity, String kg, String address) {
         this.name = name;
         this.email = email;
         this.telephone = telephone;
         this.dni = dni;
         this.quantity = quantity;
         this.kg = kg;
+        this.address = address;
     }
 
     public String getName() {
@@ -42,4 +44,7 @@ public class SuitCase {
         return kg;
     }
 
+    public String getAddress() {
+        return address;
+    }
 }
