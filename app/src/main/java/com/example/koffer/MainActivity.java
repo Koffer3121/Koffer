@@ -4,7 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.koffer.view.activity.SelectLoginActivity;
+import com.example.koffer.view.activity.LoginActivity;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(MainActivity.this, SelectLoginActivity.class);
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
     }
@@ -32,4 +33,21 @@ public class MainActivity extends AppCompatActivity {
 //    getReference().child("suitcase").child(suitcaseKey).setValue(suitcase);
 //    Ref().child("user-suicase").child(uid).child(suitcaseKey).setValue(true);
 //     }
+    //uid = getCurrent.guid()
+
+//        view.findViewById();
+
+// this   =>   getActivity()
+
+        /*
+            nclick(){
+                saco los dato
+                long =
+                lat  =
+                canti =
+                String suitcaseKey = getReference().push().getKey();
+                getReference().child("suitcase").child(suitcaseKey).setValue(suitcase);
+                Ref().child("user-suicase").child(uid).child(suitcaseKey).setValue(true);
+            }
+         */
 }

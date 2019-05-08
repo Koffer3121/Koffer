@@ -15,19 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "1007309884278-h7pbb8sla3rn63j1buah8p7c7bc64us2.apps.googleusercontent.com",
+          "client_id": "1007309884278-tiptoqjvigig7251cga5e8q5ph0bqt79.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.koffer",
-            "certificate_hash": "d198bc2bbe818d2ba79db9d294a9008bb97fc316"
-          }
-        },
-        {
-          "client_id": "1007309884278-pu9cvqpmhj4i4ift5gs312hdrclttd9p.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.koffer",
-            "certificate_hash": "9e164b4f332bd8d244f4f04cd95379eaab29d6fd"
+            "certificate_hash": "18a0cfca1a2f01eda5c1276125a748e844862a38"
           }
         },
         {
@@ -39,11 +31,48 @@
           }
         },
         {
-          "client_id": "1007309884278-tiptoqjvigig7251cga5e8q5ph0bqt79.apps.googleusercontent.com",
+          "client_id": "1007309884278-pu9cvqpmhj4i4ift5gs312hdrclttd9p.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.koffer",
-            "certificate_hash": "18a0cfca1a2f01eda5c1276125a748e844862a38"
+            "certificate_hash": "9e164b4f332bd8d244f4f04cd95379eaab29d6fd"
+          }
+        },
+        {
+          "client_id": "1007309884278-gsbhm60f4u0c6753e33knsjrbi382v23.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuFjwEtskm-9YJ-qhKrbPVhgUlLr-Pu0U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1007309884278-gsbhm60f4u0c6753e33knsjrbi382v23.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1007309884278:android:e5cd357d1e248b7d",
+        "android_client_info": {
+          "package_name": "com.example.transportkoffer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1007309884278-vs8t9dmsphq0r159pvm1ts5ifgg6922f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.transportkoffer",
+            "certificate_hash": "9e164b4f332bd8d244f4f04cd95379eaab29d6fd"
           }
         },
         {
