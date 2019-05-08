@@ -1,4 +1,4 @@
-package com.example.koffer.view;
+package com.example.koffer.view.activity;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -6,12 +6,11 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.koffer.R;
-import com.example.koffer.fragment.HomeFragment;
-import com.example.koffer.fragment.MapFragment;
-import com.example.koffer.fragment.ServiceFragment;
+import com.example.koffer.view.fragment.HomeFragment;
+import com.example.koffer.view.fragment.MapFragment;
+import com.example.koffer.view.fragment.ServiceFragment;
 
 public class BottomNavigationViewActivity extends AppCompatActivity {
 
@@ -50,7 +49,7 @@ public class BottomNavigationViewActivity extends AppCompatActivity {
 
                     }
                     if (selectedFragment != null) {
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_enter, R.anim.fade_exit).replace(R.id.fragment_container,
                                 selectedFragment).commit();
                     }
 

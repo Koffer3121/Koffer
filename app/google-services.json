@@ -31,6 +31,51 @@
           }
         },
         {
+          "client_id": "1007309884278-pu9cvqpmhj4i4ift5gs312hdrclttd9p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.koffer",
+            "certificate_hash": "9e164b4f332bd8d244f4f04cd95379eaab29d6fd"
+          }
+        },
+        {
+          "client_id": "1007309884278-gsbhm60f4u0c6753e33knsjrbi382v23.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuFjwEtskm-9YJ-qhKrbPVhgUlLr-Pu0U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1007309884278-gsbhm60f4u0c6753e33knsjrbi382v23.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1007309884278:android:e5cd357d1e248b7d",
+        "android_client_info": {
+          "package_name": "com.example.transportkoffer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1007309884278-vs8t9dmsphq0r159pvm1ts5ifgg6922f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.transportkoffer",
+            "certificate_hash": "9e164b4f332bd8d244f4f04cd95379eaab29d6fd"
+          }
+        },
+        {
           "client_id": "1007309884278-gsbhm60f4u0c6753e33knsjrbi382v23.apps.googleusercontent.com",
           "client_type": 3
         }

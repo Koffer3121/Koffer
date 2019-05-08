@@ -1,4 +1,4 @@
-package com.example.koffer.view;
+package com.example.koffer.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,7 +19,6 @@ public class SlideActivity extends AppCompatActivity {
     private ViewPager mSlideViewPager;
     private LinearLayout mDotLayout;
 
-    private SlideAdapter slideAdapter;
     private TextView[] mDots;
 
     private Button mNextBtn;
@@ -41,14 +40,14 @@ public class SlideActivity extends AppCompatActivity {
             finish();
         }
 
-        mSlideViewPager = (ViewPager) findViewById(R.id.slideViewPager);
-        mDotLayout = (LinearLayout) findViewById(R.id.dotsLayout);
+        mSlideViewPager = findViewById(R.id.slideViewPager);
+        mDotLayout = findViewById(R.id.dotsLayout);
 
-        mNextBtn = (Button) findViewById(R.id.nextBtn);
-        mPrevBtn = (Button) findViewById(R.id.prevBtn);
-        mFinishBtn = (Button) findViewById(R.id.finishBtn);
+        mNextBtn = findViewById(R.id.nextBtn);
+        mPrevBtn = findViewById(R.id.prevBtn);
+        mFinishBtn = findViewById(R.id.finishBtn);
 
-        slideAdapter = new SlideAdapter(this);
+        SlideAdapter slideAdapter = new SlideAdapter(this);
 
         mSlideViewPager.setAdapter(slideAdapter);
 

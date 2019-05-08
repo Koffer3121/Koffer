@@ -1,4 +1,4 @@
-package com.example.koffer.view;
+package com.example.koffer.view.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
