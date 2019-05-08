@@ -1,21 +1,21 @@
 package com.example.koffer.model;
 
-public class SuitCase {
+public class Suitcase {
 
-    public String name;
-    public String email;
-    public String telephone;
-    public String dni;
-    public String quantity;
-    public String kg;
-    public String pickUpAddress;
-    public String deliveryAddress;
+    private String name;
+    private String email;
+    private String telephone;
+    private String dni;
+    private String quantity;
+    private String kg;
+    private String pickUpAddress;
+    private String deliveryAddress;
 
-    public SuitCase(){
+    public Suitcase(){
 
     }
 
-    public SuitCase(String name, String email, String telephone, String dni, String quantity, String kg, String deliveryAddress, String pickUpAddress) {
+    public Suitcase(String name, String email, String telephone, String dni, String quantity, String kg, String deliveryAddress, String pickUpAddress) {
         this.name = name;
         this.email = email;
         this.telephone = telephone;
