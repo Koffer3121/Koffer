@@ -1,6 +1,7 @@
-package com.example.koffer.fragment;
+package com.example.koffer.view.fragment;
 
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -25,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 /**
@@ -47,7 +49,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_map, container, false);
@@ -55,13 +57,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 //        countDownTimer();
 
-        mMapView = (MapView) mView.findViewById(R.id.map);
+        mMapView = mView.findViewById(R.id.map);
         if (mMapView != null) {
             mMapView.onCreate(null);
             mMapView.onResume();
@@ -89,7 +91,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        MapsInitializer.initialize(getContext());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            MapsInitializer.initialize(Objects.requireNonNull(getContext()));
+        }
 
         mGoogleMap = googleMap;
         googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
@@ -105,8 +109,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
 
                     MapsPojo mp = snapshot.getValue(MapsPojo.class);
-                    Double latitud = mp.getLatitud();
-                    Double longitud = mp.getLongitud();
+                    double latitud = 0;
+                    if (mp != null) {
+                        latitud = mp.getLatitud();
+                    }
+                    double longitud = 0;
+                    if (mp != null) {
+                        longitud = mp.getLongitud();
+                    }
                     MarkerOptions markerOptions = new MarkerOptions();
                     markerOptions.position(new LatLng(latitud,longitud));
                     tmpRealTimeMarkers.add(mGoogleMap.addMarker(markerOptions));

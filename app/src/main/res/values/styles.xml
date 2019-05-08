@@ -12,6 +12,11 @@
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
+    <style name="CheckBoxTheme">
+        <item name="colorAccent">@color/colorWhite</item>
+        <item name="colorControlNormal">@color/colorWhite</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

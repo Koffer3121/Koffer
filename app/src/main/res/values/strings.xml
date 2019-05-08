@@ -16,13 +16,33 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
+    <!-- Toast messages -->
+    <string name="logging_in">Iniciando sesión…</string>
+    <string name="logging_in_error">Error al inicar sesión, prueba de nuevo mas tarde</string>
+    <string name="welcome">Bienvenido:</string>
+    <string name="success">Sesión inicada correctamente</string>
+    <string name="empty_fields">Se deben rellenar todos los campos</string>
+    <string name="user_not_registered">¡Este usuario no está registrado!</string>
+
+    <!-- Suitcase -->
+    <string name="user_name">User Name</string>
+    <string name="user_email">User Email</string>
+    <string name="suitcase_quantity">Suitcase Quantity</string>
+    <string name="suitcase_kg">Suitcase KG</string>
+
+    <!-- Login and Register-->
+    <string name="welcome_title_login">¡Bienvenido!</string>
+    <string name="welcome_subtitle_login">Inicia sesión con tu correo para empezar</string>
+    <string name="welcome_title_register">Crea una cuenta</string>
+    <string name="email">Email</string>
+    <string name="password">· · · · · · ·</string>
+    <string name="remember_pass">Recordar Contraseña</string>
+    <string name="log_in">INICIAR SESIÓN</string>
+    <string name="sing_in">CREAR CUENTA</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>
