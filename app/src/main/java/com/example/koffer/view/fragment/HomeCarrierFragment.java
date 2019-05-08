@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.koffer.R;
-import com.example.koffer.model.Suitcase;
+import com.example.koffer.model.SuitCase;
 import com.example.koffer.view.SuitcaseViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -49,14 +49,14 @@ public class HomeCarrierFragment extends Fragment {
         mReference = FirebaseDatabase.getInstance().getReference();
         mUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        FirebaseRecyclerOptions<Suitcase> options = new FirebaseRecyclerOptions.Builder<Suitcase>()
-                .setIndexedQuery(setQuery(), mReference.child(SUITCASE_REFERENCE), Suitcase.class)
+        FirebaseRecyclerOptions<SuitCase> options = new FirebaseRecyclerOptions.Builder<SuitCase>()
+                .setIndexedQuery(setQuery(), mReference.child(SUITCASE_REFERENCE), SuitCase.class)
                 .setLifecycleOwner(this)
                 .build();
 
         RecyclerView recyclerView = view.findViewById(R.id.suitcase_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new FirebaseRecyclerAdapter<Suitcase, SuitcaseViewHolder>(options) {
+        recyclerView.setAdapter(new FirebaseRecyclerAdapter<SuitCase, SuitcaseViewHolder>(options) {
             @NonNull
             @Override
             public SuitcaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
@@ -66,11 +66,11 @@ public class HomeCarrierFragment extends Fragment {
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull SuitcaseViewHolder holder, int position, @NonNull Suitcase suitcase) {
-                holder.userName.setText(suitcase.name);
-                holder.userEmail.setText(suitcase.email);
-                holder.suitcaseQuantity.setText(suitcase.quantity);
-                holder.suitcaseKG.setText(suitcase.kg);
+            protected void onBindViewHolder(@NonNull SuitcaseViewHolder holder, int position, @NonNull SuitCase suitcase) {
+                holder.userName.setText(suitcase.getName());
+                holder.userEmail.setText(suitcase.getEmail());
+                holder.suitcaseQuantity.setText(suitcase.getQuantity());
+                holder.suitcaseKG.setText(suitcase.getKg());
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

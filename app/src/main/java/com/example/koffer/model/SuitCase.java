@@ -2,14 +2,18 @@ package com.example.koffer.model;
 
 public class SuitCase {
 
-    String name;
-    String email;
-    String telephone;
-    String dni;
-    String quantity;
-    String kg;
-    String pickUpAddress;
-    String deliveryAddress;
+    public String name;
+    public String email;
+    public String telephone;
+    public String dni;
+    public String quantity;
+    public String kg;
+    public String pickUpAddress;
+    public String deliveryAddress;
+
+    public SuitCase(){
+
+    }
 
     public SuitCase(String name, String email, String telephone, String dni, String quantity, String kg, String deliveryAddress, String pickUpAddress) {
         this.name = name;
