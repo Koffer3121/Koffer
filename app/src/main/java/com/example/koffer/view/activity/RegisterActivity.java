@@ -1,4 +1,4 @@
-package com.example.koffer.view;
+package com.example.koffer.view.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -29,7 +29,6 @@ public class RegisterActivity extends AppCompatActivity {
     private DatabaseReference mRef;
 
     private EditText email, passwd1;
-    private Button btnRegister;
     private ProgressDialog progressDialog;
 
     @Override
@@ -42,8 +41,8 @@ public class RegisterActivity extends AppCompatActivity {
         mRef = FirebaseDatabase.getInstance().getReference();
 
         email = findViewById(R.id.email);
-        passwd1 = findViewById(R.id.pasword);
-        btnRegister = findViewById(R.id.registrarse);
+        passwd1 = findViewById(R.id.password);
+        Button btnRegister = findViewById(R.id.registrarse);
         progressDialog = new ProgressDialog(this);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,8 +71,10 @@ public class RegisterActivity extends AppCompatActivity {
                 if (task.isSuccessful()){
                     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-                    mRef.child("users").child(firebaseUser.getUid()).child("email").setValue(firebaseUser.getEmail());
-                    mRef.child("users").child(firebaseUser.getUid()).child("isTransportist").setValue(false);
+                    if (firebaseUser != null) {
+                        mRef.child("users").child(firebaseUser.getUid()).child("email").setValue(firebaseUser.getEmail());
+                        mRef.child("users").child(firebaseUser.getUid()).child("isTransportist").setValue(false);
+                    }
 
                     Toast.makeText(RegisterActivity.this, "Registro completado, A continuacion inicie sesion.", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);

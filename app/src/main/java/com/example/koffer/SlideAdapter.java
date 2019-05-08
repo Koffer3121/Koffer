@@ -8,32 +8,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class SlideAdapter extends PagerAdapter {
 
-    Context context;
-    LayoutInflater layoutInflater;
+    private Context context;
 
     public SlideAdapter(Context context) {
         this.context = context;
     }
 
     //Arrays
-    public int[] slide_img = {
+    private int[] slide_img = {
         R.drawable.koffer_icon,
         R.drawable.code_icon,
         R.drawable.sleep_icon
     };
 
-    public String[] slide_headings = {
+    private String[] slide_headings = {
             "BIENVENIDO",
             "LOGÍSTICA",
             "COMODIDAD"
     };
 
-    public String[] slide_descs = {
+    private String[] slide_descs = {
             "Bienvenidos a Koffer, gestionamos" +
             "y nos hacemos cargo de la logistica de " +
             "su equipaja de viaje para que usted pueda " +
@@ -53,18 +51,18 @@ public class SlideAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
-        return view == (ConstraintLayout) o;
+        return view == o;
     }
 
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.slide_layout, container, false);
 
-        ImageView slideImageView = (ImageView) view.findViewById(R.id.slide_img);
-        TextView slideHeading = (TextView) view.findViewById(R.id.slide_header);
-        TextView slideDesc = (TextView) view.findViewById(R.id.slide_desc);
+        ImageView slideImageView = view.findViewById(R.id.slide_img);
+        TextView slideHeading = view.findViewById(R.id.slide_header);
+        TextView slideDesc = view.findViewById(R.id.slide_desc);
 
         slideImageView.setImageResource(slide_img[position]);
         slideHeading.setText(slide_headings[position]);
