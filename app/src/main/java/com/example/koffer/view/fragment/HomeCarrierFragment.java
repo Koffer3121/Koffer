@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,10 +66,12 @@ public class HomeCarrierFragment extends Fragment {
 
             @Override
             protected void onBindViewHolder(@NonNull SuitcaseViewHolder holder, int position, @NonNull Suitcase suitcase) {
-                holder.userName.setText(suitcase.name);
-                holder.userEmail.setText(suitcase.email);
-                holder.suitcaseQuantity.setText(suitcase.quantity);
-                holder.suitcaseKG.setText(suitcase.kg);
+                final String suitcaseKey = getRef(position).getKey();
+
+                holder.userName.setText(suitcase.getName());
+                holder.userEmail.setText(suitcase.getEmail());
+                holder.suitcaseQuantity.setText(suitcase.getQuantity());
+                holder.suitcaseKG.setText(suitcase.getKg());
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

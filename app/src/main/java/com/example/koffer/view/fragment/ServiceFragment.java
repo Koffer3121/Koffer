@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.koffer.R;
-import com.example.koffer.model.SuitCase;
+import com.example.koffer.model.Suitcase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -75,8 +75,8 @@ public class ServiceFragment extends Fragment {
 
         if (!TextUtils.isEmpty(name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(phone) || !TextUtils.isEmpty(dniString) || !TextUtils.isEmpty(quanity) || !TextUtils.isEmpty(kg) || !TextUtils.isEmpty(pickUpAddress) || !TextUtils.isEmpty((deliveryAddress))){
             String key = mdatabase.push().getKey();
-            SuitCase suitCase = new SuitCase(name, email, phone, dniString, quanity, kg, pickUpAddress, deliveryAddress);
-            mdatabase.child("suitcase").child(key).setValue(suitCase);
+            Suitcase suitcase = new Suitcase(name, email, phone, dniString, quanity, kg, pickUpAddress, deliveryAddress);
+            mdatabase.child("suitcase").child(key).setValue(suitcase);
             mdatabase.child("user-suitcase").child(uid).child(key).setValue(true);
             Toast.makeText(getActivity(), "Petición aceptada", Toast.LENGTH_LONG).show();
 
