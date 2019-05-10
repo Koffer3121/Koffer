@@ -115,6 +115,7 @@ public class HomeCarrierFragment extends Fragment {
     public void orderId(String suitcaseKey){
 
         cardOrderId = suitcaseKey;
+
     }
     public void orderAssign(){
         String uid = FirebaseAuth.getInstance().getUid();
