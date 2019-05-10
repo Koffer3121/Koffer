@@ -2,6 +2,7 @@ package com.example.koffer.view.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -34,12 +36,14 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
 
     private EditText email, password;
+    private CheckBox mCheckBoxRemember;
     private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         setupComponents();
     }
 
@@ -48,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
+        mCheckBoxRemember = findViewById(R.id.checkBox);
         progressDialog = new ProgressDialog(this);
         Button btnLogin = findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -104,7 +109,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         }
-
     }
 
     private void getUserInformationAndDecideWhereTheUserShouldGo(@NonNull DataSnapshot dataSnapshot) {

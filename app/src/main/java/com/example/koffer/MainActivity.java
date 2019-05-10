@@ -32,34 +32,4 @@ public class MainActivity extends AppCompatActivity {
         permissionManager.checkResult(requestCode, permissions, grantResults);
     }
 
-    //    String uid;
-//    uid = getCurrent.guid()
-//    view.findViewById();
-//    this   =>   getActivity()
-//    nclick(){
-//    saco los dato
-//    long =
-//    lat  =
-//    canti =
-//    String suitcaseKey = getReference().push().getKey();
-//    getReference().child("suitcase").child(suitcaseKey).setValue(suitcase);
-//    Ref().child("user-suicase").child(uid).child(suitcaseKey).setValue(true);
-//     }
-    //uid = getCurrent.guid()
-
-//        view.findViewById();
-
-// this   =>   getActivity()
-
-        /*
-            nclick(){
-                saco los dato
-                long =
-                lat  =
-                canti =
-                String suitcaseKey = getReference().push().getKey();
-                getReference().child("suitcase").child(suitcaseKey).setValue(suitcase);
-                Ref().child("user-suicase").child(uid).child(suitcaseKey).setValue(true);
-            }
-         */
 }

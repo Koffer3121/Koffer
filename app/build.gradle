@@ -48,6 +48,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:17.0.0'
     implementation 'com.google.firebase:firebase-auth:17.0.0'
 
+    // Paypal library
+    implementation 'com.paypal.sdk:paypal-android-sdk:+'
+
     // Permission Manager library
     implementation 'com.github.karanchuri:PermissionManager:0.1.0'
 
