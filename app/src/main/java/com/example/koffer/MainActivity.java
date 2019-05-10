@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.koffer.view.activity.LoginActivity;
+import com.example.koffer.view.activity.SelectLoginActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -15,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        Intent intent = new Intent(MainActivity.this, SelectLoginActivity.class);
         startActivity(intent);
         finish();
     }

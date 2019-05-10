@@ -66,6 +66,8 @@ public class HomeCarrierFragment extends Fragment {
 
             @Override
             protected void onBindViewHolder(@NonNull SuitcaseViewHolder holder, int position, @NonNull Suitcase suitcase) {
+                final String suitcaseKey = getRef(position).getKey();
+
                 holder.userName.setText(suitcase.getName());
                 holder.userEmail.setText(suitcase.getEmail());
                 holder.suitcaseQuantity.setText(suitcase.getQuantity());
