@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.koffer.Config.ConfigPaypal;
+import com.example.koffer.config.ConfigPaypal;
 import com.example.koffer.R;
 import com.example.koffer.model.Suitcase;
 import com.example.koffer.view.activity.PaymentDetailsActivity;
