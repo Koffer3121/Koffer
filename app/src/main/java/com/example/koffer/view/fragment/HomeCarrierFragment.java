@@ -113,14 +113,12 @@ public class HomeCarrierFragment extends Fragment {
     public void orderId(String suitcaseKey){
 
         cardOrderId = suitcaseKey;
-        System.out.println("hola");
-        System.out.println(suitcaseKey);
     }
     public void orderAssign(){
         String uid = FirebaseAuth.getInstance().getUid();
 
         mReference.child("carrier-suitcase").child(uid).child(cardOrderId).setValue(true);
-        //mReference.child("suitcase").child(idDelPedidoSelccionado).setValue(true);
+        mReference.child("suitcase").child(cardOrderId).child("carrierAsigned").setValue(true);
         Toast.makeText(getActivity(), "Petición aceptada", Toast.LENGTH_LONG).show();
     }
 
