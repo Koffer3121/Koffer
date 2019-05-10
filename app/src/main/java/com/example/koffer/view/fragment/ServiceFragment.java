@@ -22,14 +22,14 @@ import com.google.firebase.database.FirebaseDatabase;
 public class ServiceFragment extends Fragment {
 
     View view;
-    EditText nombre;
-    EditText correo;
-    EditText telefono;
+    EditText name;
+    EditText email;
+    EditText phone;
     EditText dni;
-    EditText cantidad;
-    EditText peso;
-    EditText direccionRecogida;
-    EditText direccionEntrega;
+    EditText quantity;
+    EditText weight;
+    EditText pickUpAddress;
+    EditText deliveryAddress;
     Button btnService;
 
     private DatabaseReference mdatabase;
@@ -41,14 +41,14 @@ public class ServiceFragment extends Fragment {
 
         mdatabase = FirebaseDatabase.getInstance().getReference();
 
-        nombre = view.findViewById(R.id.registerName);
-        correo = view.findViewById(R.id.email);
-        telefono = view.findViewById(R.id.phone);
+        name = view.findViewById(R.id.registerName);
+        email = view.findViewById(R.id.email);
+        phone = view.findViewById(R.id.phone);
         dni = view.findViewById(R.id.dni);
-        cantidad = view.findViewById(R.id.quantity);
-        peso = view.findViewById(R.id.kg);
-        direccionRecogida = view.findViewById(R.id.pickUpAddress);
-        direccionEntrega = view.findViewById(R.id.deliveryAddress);
+        quantity = view.findViewById(R.id.quantity);
+        weight = view.findViewById(R.id.kg);
+        pickUpAddress = view.findViewById(R.id.pickUpAddress);
+        deliveryAddress = view.findViewById(R.id.deliveryAddress);
 
         btnService = view.findViewById(R.id.service);
 
@@ -64,19 +64,19 @@ public class ServiceFragment extends Fragment {
     public void newService(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
-        String name = nombre.getText().toString();
-        String email = correo.getText().toString();
-        String phone = telefono.getText().toString();
+        String name = this.name.getText().toString();
+        String email = this.email.getText().toString();
+        String phone = this.phone.getText().toString();
         String dniString = dni.getText().toString();
-        String quanity = cantidad.getText().toString();
-        String kg = peso.getText().toString();
-        String pickUpAddress = direccionRecogida.getText().toString();
-        String deliveryAddress = direccionEntrega.getText().toString();
+        String quantity = this.quantity.getText().toString();
+        String weight = this.weight.getText().toString();
+        String pickUpAddress = this.pickUpAddress.getText().toString();
+        String deliveryAddress = this.deliveryAddress.getText().toString();
 
-        if (!TextUtils.isEmpty(name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(phone) || !TextUtils.isEmpty(dniString) || !TextUtils.isEmpty(quanity) || !TextUtils.isEmpty(kg) || !TextUtils.isEmpty(pickUpAddress) || !TextUtils.isEmpty((deliveryAddress))){
+        if (!TextUtils.isEmpty(name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(phone) || !TextUtils.isEmpty(dniString) || !TextUtils.isEmpty(quantity) || !TextUtils.isEmpty(weight) || !TextUtils.isEmpty(pickUpAddress) || !TextUtils.isEmpty((deliveryAddress))){
             String key = mdatabase.push().getKey();
-            Suitcase suitcase = new Suitcase(name, email, phone, dniString, quanity, kg, pickUpAddress, deliveryAddress);
-            mdatabase.child("suitcase").child(key).setValue(suitcase);
+            Suitcase suitCase = new Suitcase(name, email, phone, dniString, quantity, weight, pickUpAddress, deliveryAddress);
+            mdatabase.child("suitcase").child(key).setValue(suitCase);
             mdatabase.child("user-suitcase").child(uid).child(key).setValue(true);
             Toast.makeText(getActivity(), "Petición aceptada", Toast.LENGTH_LONG).show();
 
