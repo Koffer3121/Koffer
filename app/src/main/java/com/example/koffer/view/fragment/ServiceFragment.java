@@ -41,7 +41,7 @@ public class ServiceFragment extends Fragment {
 
         mdatabase = FirebaseDatabase.getInstance().getReference();
 
-        name = view.findViewById(R.id.name);
+        name = view.findViewById(R.id.registerName);
         email = view.findViewById(R.id.email);
         phone = view.findViewById(R.id.phone);
         dni = view.findViewById(R.id.dni);

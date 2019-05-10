@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Koffer</string>
+    <string name="app_name_upper_case">KOFFER</string>
 
     <!-- Slide Layout -->
     <string name="header">HEADER</string>
@@ -34,11 +35,15 @@
     <string name="welcome_title_login">¡Bienvenido!</string>
     <string name="welcome_subtitle_login">Inicia sesión con tu correo para empezar</string>
     <string name="welcome_title_register">Crea una cuenta</string>
+    <string name="name">Nombre</string>
     <string name="email">Email</string>
     <string name="password">· · · · · · ·</string>
     <string name="remember_pass">Recordar Contraseña</string>
+    <string name="terms_and_conditions">He leído y acepto los Términos del servicio y la Política de privacidad de Koffer</string>
     <string name="log_in">INICIAR SESIÓN</string>
     <string name="sing_in">CREAR CUENTA</string>
+    <string name="recover_password">¿Olvidaste tu contraseña?</string>
+
 
 
     <!-- TODO: Remove or change this placeholder text -->

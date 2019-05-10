@@ -28,7 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mRef;
 
-    private EditText email, passwd1;
+    private EditText name, email, passwd1;
     private ProgressDialog progressDialog;
 
     @Override
@@ -40,9 +40,10 @@ public class RegisterActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         mRef = FirebaseDatabase.getInstance().getReference();
 
+        name = findViewById(R.id.registerName);
         email = findViewById(R.id.email);
         passwd1 = findViewById(R.id.password);
-        Button btnRegister = findViewById(R.id.registrarse);
+        Button btnRegister = findViewById(R.id.btnRegister);
         progressDialog = new ProgressDialog(this);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
