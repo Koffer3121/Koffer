@@ -11,6 +11,13 @@ public class Suitcase {
     private String kg;
     private String pickUpAddress;
     private String deliveryAddress;
+    private boolean carrierAsigned;
+
+    public Suitcase(){
+
+    }
+
+    public Suitcase(String name, String email, String telephone, String dni, String quantity, String kg, String deliveryAddress, String pickUpAddress,Boolean carrierAsigned) {
 
     public Suitcase() {
 
@@ -26,6 +33,7 @@ public class Suitcase {
         this.kg = kg;
         this.pickUpAddress = pickUpAddress;
         this.deliveryAddress = deliveryAddress;
+        this.carrierAsigned = carrierAsigned;
     }
 
     public String getId() {
@@ -88,6 +96,9 @@ public class Suitcase {
         return pickUpAddress;
     }
 
+    public boolean isCarrierAsigned() {
+        return carrierAsigned;
+      
     public void setPickUpAddress(String pickUpAddress) {
         this.pickUpAddress = pickUpAddress;
     }

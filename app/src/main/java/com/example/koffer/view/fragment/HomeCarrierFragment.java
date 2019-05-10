@@ -8,9 +8,11 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.koffer.R;
 import com.example.koffer.model.Suitcase;
@@ -31,6 +33,8 @@ public class HomeCarrierFragment extends Fragment {
     public static final String SUITCASE_REFERENCE = "suitcase";
     public DatabaseReference mReference;
     public FirebaseUser mUser;
+
+    private String cardOrderId;
 
     public HomeCarrierFragment() {
         // Required empty public constructor
@@ -68,6 +72,8 @@ public class HomeCarrierFragment extends Fragment {
             protected void onBindViewHolder(@NonNull SuitcaseViewHolder holder, int position, @NonNull Suitcase suitcase) {
                 final String suitcaseKey = getRef(position).getKey();
 
+                orderId(suitcaseKey);
+                
                 holder.userName.setText(suitcase.getName());
                 holder.userEmail.setText(suitcase.getEmail());
                 holder.suitcaseQuantity.setText(suitcase.getQuantity());
@@ -90,6 +96,7 @@ public class HomeCarrierFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //Al hacer clic en aceptar que haga algo la aplicacion.
+                        orderAssign();
                     }
                 })
                 .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -103,6 +110,18 @@ public class HomeCarrierFragment extends Fragment {
 
     Query setQuery(){
         return  mReference.child(SUITCASE_REFERENCE).limitToFirst(100);
+    }
+
+    public void orderId(String suitcaseKey){
+
+        cardOrderId = suitcaseKey;
+    }
+    public void orderAssign(){
+        String uid = FirebaseAuth.getInstance().getUid();
+
+        mReference.child("carrier-suitcase").child(uid).child(cardOrderId).setValue(true);
+        mReference.child("suitcase").child(cardOrderId).child("carrierAsigned").setValue(true);
+        Toast.makeText(getActivity(), "Petición aceptada", Toast.LENGTH_LONG).show();
     }
 
 }
