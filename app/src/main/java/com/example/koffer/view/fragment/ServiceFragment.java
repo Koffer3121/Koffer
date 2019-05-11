@@ -54,7 +54,6 @@ public class ServiceFragment extends Fragment {
     EditText pickUpAddress;
     EditText deliveryAddress;
     Button btnService;
-    Button btnPaypal;
 
     private DatabaseReference mdatabase;
 
@@ -82,7 +81,7 @@ public class ServiceFragment extends Fragment {
 
         mdatabase = FirebaseDatabase.getInstance().getReference();
 
-        name = view.findViewById(R.id.name);
+        name = view.findViewById(R.id.registerName);
         email = view.findViewById(R.id.email);
         phone = view.findViewById(R.id.phone);
         dni = view.findViewById(R.id.dni);
@@ -92,18 +91,11 @@ public class ServiceFragment extends Fragment {
         deliveryAddress = view.findViewById(R.id.deliveryAddress);
 
         btnService = view.findViewById(R.id.service);
-        btnPaypal = view.findViewById(R.id.testPay);
 
         btnService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 newService();
-            }
-        });
-        btnPaypal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                processPayment();
             }
         });
         return view;
@@ -120,14 +112,15 @@ public class ServiceFragment extends Fragment {
         String weight = this.weight.getText().toString();
         String pickUpAddress = this.pickUpAddress.getText().toString();
         String deliveryAddress = this.deliveryAddress.getText().toString();
+        Boolean carrierAsigned = false;
 
         if (!TextUtils.isEmpty(name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(phone) || !TextUtils.isEmpty(dniString) || !TextUtils.isEmpty(quantity) || !TextUtils.isEmpty(weight) || !TextUtils.isEmpty(pickUpAddress) || !TextUtils.isEmpty((deliveryAddress))) {
             String key = mdatabase.push().getKey();
-            Suitcase suitCase = new Suitcase(name, email, phone, dniString, quantity, weight, pickUpAddress, deliveryAddress);
+            Suitcase suitCase = new Suitcase(name, email, phone, dniString, quantity, weight, pickUpAddress, deliveryAddress,carrierAsigned);
             mdatabase.child("suitcase").child(key).setValue(suitCase);
             mdatabase.child("user-suitcase").child(uid).child(key).setValue(true);
             Toast.makeText(getActivity(), "Petición aceptada", Toast.LENGTH_LONG).show();
-//            processPayment();
+            processPayment();
 
         } else {
             Toast.makeText(getActivity(), "Debes completar todos los campos", Toast.LENGTH_LONG).show();

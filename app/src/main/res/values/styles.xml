@@ -13,8 +13,8 @@
     </style>
 
     <style name="CheckBoxTheme">
-        <item name="colorAccent">@color/colorWhite</item>
-        <item name="colorControlNormal">@color/colorWhite</item>
+        <item name="colorAccent">@color/primaryTextColor</item>
+        <item name="colorControlNormal">@color/secondaryColor</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
