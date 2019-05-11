@@ -28,14 +28,16 @@
 
         <EditText
             android:id="@+id/etxtEmail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-        <Button
-            android:id="@+id/btnResetEmail"
+            android:enabled="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Actualizar email" />
+            android:layout_weight="1" />
+        <ImageView
+            android:id="@+id/setTxtEmailEditable"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_mode_edit_black_24dp"/>
 
     </LinearLayout>
 
@@ -45,15 +47,19 @@
 
         <EditText
             android:id="@+id/etxtPassword"
+            android:enabled="false"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:inputType="textPassword"
+            android:hint="update password" />
 
-        <Button
-            android:id="@+id/btnResetPassword"
+        <ImageView
+            android:id="@+id/setTxtPasswordEditable"
+            android:padding="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Actualizar contraseña" />
+            android:src="@drawable/ic_mode_edit_black_24dp"/>
 
     </LinearLayout>
 
@@ -65,7 +71,7 @@
             android:id="@+id/btnSignOut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign Out"/>
+            android:text="Sign Out" />
 
     </LinearLayout>
 

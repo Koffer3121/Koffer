@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.koffer.R;
@@ -30,7 +31,8 @@ public class MoreUserFragment extends Fragment {
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     EditText etxtEmail, etxtPassword;
-    Button btnResetEmail, btnResetPassword, btnSignOut;
+    Button btnSignOut;
+    ImageView setTxtEmailEditable, setTxtPasswordEditable;
 
     View view;
 
@@ -45,15 +47,14 @@ public class MoreUserFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_more_user, container, false);
 
         etxtEmail = view.findViewById(R.id.etxtEmail);
         etxtPassword = view.findViewById(R.id.etxtPassword);
-        btnResetEmail = view.findViewById(R.id.btnResetEmail);
-        btnResetPassword = view.findViewById(R.id.btnResetPassword);
+        setTxtEmailEditable = view.findViewById(R.id.setTxtEmailEditable);
+        setTxtPasswordEditable = view.findViewById(R.id.setTxtPasswordEditable);
         btnSignOut = view.findViewById(R.id.btnSignOut);
 
         mAuth = FirebaseAuth.getInstance();
@@ -73,17 +74,48 @@ public class MoreUserFragment extends Fragment {
             }
         };
 
-        btnResetEmail.setOnClickListener(new View.OnClickListener() {
+        setTxtEmailEditable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setUserEmailAddr(v);
+                boolean editingEmail;
+
+                if (etxtEmail.isEnabled()) {
+                    etxtEmail.setEnabled(false);
+                    setTxtEmailEditable.setImageResource(R.drawable.ic_mode_edit_black_24dp);
+                    editingEmail = false;
+                } else {
+                    etxtEmail.setEnabled(true);
+                    setTxtEmailEditable.setImageResource(R.drawable.ic_check_black_24dp);
+                    editingEmail = true;
+                }
+
+                if (!editingEmail) {
+                    setUserEmailAddr(v);
+                }
+
             }
         });
 
-        btnResetPassword.setOnClickListener(new View.OnClickListener() {
+        setTxtPasswordEditable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setUserPassword(v);
+                boolean editingPassword;
+
+                if (etxtPassword.isEnabled()) {
+                    etxtPassword.setEnabled(false);
+                    setTxtPasswordEditable.setImageResource(R.drawable.ic_mode_edit_black_24dp);
+                    editingPassword = false;
+                    etxtPassword.setHint("update password");
+                } else {
+                    etxtPassword.setEnabled(true);
+                    setTxtPasswordEditable.setImageResource(R.drawable.ic_check_black_24dp);
+                    editingPassword = true;
+                    etxtPassword.setHint("");
+                }
+
+                if (!editingPassword) {
+                    setUserPassword(v);
+                }
             }
         });
 
@@ -145,6 +177,8 @@ public class MoreUserFragment extends Fragment {
                     Toast.makeText(getActivity(), "password updated", Toast.LENGTH_SHORT).show();
             }
         });
+        etxtPassword.getText().clear();
+        etxtPassword.setHint("******");
     }
 
     public void signOut(View view) {
