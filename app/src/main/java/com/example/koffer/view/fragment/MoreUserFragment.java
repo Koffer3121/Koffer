@@ -1,6 +1,7 @@
 package com.example.koffer.view.fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +10,8 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -86,6 +89,9 @@ public class MoreUserFragment extends Fragment {
                 } else {
                     etxtEmail.setEnabled(true);
                     setTxtEmailEditable.setImageResource(R.drawable.ic_check_black_24dp);
+                    etxtEmail.requestFocus();
+                    InputMethodManager imgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imgr.showSoftInput(etxtEmail, InputMethodManager.SHOW_IMPLICIT);
                     editingEmail = true;
                 }
 
@@ -109,6 +115,9 @@ public class MoreUserFragment extends Fragment {
                 } else {
                     etxtPassword.setEnabled(true);
                     setTxtPasswordEditable.setImageResource(R.drawable.ic_check_black_24dp);
+                    etxtPassword.requestFocus();
+                    InputMethodManager imgr = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imgr.showSoftInput(etxtPassword, InputMethodManager.SHOW_IMPLICIT);
                     editingPassword = true;
                     etxtPassword.setHint("");
                 }

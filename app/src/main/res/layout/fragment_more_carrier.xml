@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="PANEL DE USUARIO"
+            android:text="PANEL DE TRANSPORTISTA"
             android:textStyle="bold"
             android:textSize="24dp"
             android:layout_marginTop="10dp"
