@@ -3,7 +3,6 @@
     package="com.example.koffer">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -14,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".view.activity.PaymentDetailsActivity"></activity>
         <activity android:name=".view.activity.TrackingActivity" />
         <activity android:name=".view.activity.SlideActivity" />
         <activity android:name=".view.activity.TestingActivity" />
