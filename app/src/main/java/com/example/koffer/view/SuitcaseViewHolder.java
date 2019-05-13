@@ -16,7 +16,7 @@ public class SuitcaseViewHolder extends RecyclerView.ViewHolder {
         super(item);
 
         userName = item.findViewById(R.id.userName);
-        userEmail = item.findViewById(R.id.userEmail);
+        userEmail = item.findViewById(R.id.editUserName);
         suitcaseQuantity = item.findViewById(R.id.suitecaseQuantity);
         suitcaseKG = item.findViewById(R.id.suitcaseKG);
     }

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="120dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:fontFamily="@font/comfortaa_light"
@@ -33,6 +33,7 @@
         android:layout_marginRight="32dp"
         android:autofillHints="@string/email"
         android:background="@drawable/edit_text_border"
+        android:drawableStart="@drawable/ic_person_black_24dp"
         android:drawableLeft="@drawable/ic_person_black_24dp"
         android:drawablePadding="12dp"
         android:ems="10"
@@ -46,8 +47,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView1"
-        tools:targetApi="o"
-        android:drawableStart="@drawable/ic_person_black_24dp" />
+        tools:targetApi="o" />
 
     <EditText
         android:id="@+id/email"
@@ -104,6 +104,29 @@
         app:layout_constraintTop_toBottomOf="@+id/email"
         tools:targetApi="o" />
 
+    <EditText
+        android:id="@+id/registerPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:autofillHints="@string/phone"
+        android:background="@drawable/edit_text_border"
+        android:drawableStart="@drawable/ic_phone_android_black_24dp"
+        android:drawableLeft="@drawable/ic_phone_android_black_24dp"
+        android:drawablePadding="12dp"
+        android:ems="10"
+        android:hint="@string/phone"
+        android:inputType="phone"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        tools:targetApi="o" />
+
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="0dp"
@@ -118,8 +141,9 @@
         android:textColor="@color/primaryTextColor"
         android:theme="@style/CheckBoxTheme"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/registerPhone" />
 
     <Button
         android:id="@+id/btnRegister"

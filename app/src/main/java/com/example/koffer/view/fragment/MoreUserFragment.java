@@ -32,6 +32,8 @@ import com.google.firebase.auth.UserInfo;
  */
 public class MoreUserFragment extends Fragment {
 
+    FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
 
     EditText etxtEmail, etxtPassword;
@@ -50,6 +52,9 @@ public class MoreUserFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_more_user, container, false);
         TextView textView = view.findViewById(R.id.editPerfil);
+        btnSignOut = view.findViewById(R.id.btnSignOut);
+
+        mAuth = FirebaseAuth.getInstance();
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +63,19 @@ public class MoreUserFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOut(v);
+            }
+        });
         return view;
+    }
+
+    public void signOut(View view) {
+        mAuth.signOut();
     }
 
 }
