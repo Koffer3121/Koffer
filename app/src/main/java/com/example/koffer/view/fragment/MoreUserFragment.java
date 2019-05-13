@@ -1,6 +1,5 @@
 package com.example.koffer.view.fragment;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +9,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +22,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +31,8 @@ import com.google.firebase.auth.UserInfo;
 public class MoreUserFragment extends Fragment {
 
     FirebaseAuth mAuth;
+    private DatabaseReference mDataBase;
+    FirebaseUser user;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     EditText etxtEmail, etxtPassword;
@@ -61,11 +63,12 @@ public class MoreUserFragment extends Fragment {
         btnSignOut = view.findViewById(R.id.btnSignOut);
 
         mAuth = FirebaseAuth.getInstance();
+        mDataBase = FirebaseDatabase.getInstance().getReference();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user == null) {
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
                     intent.putExtra("goToActivityUsers", true);
@@ -139,7 +142,6 @@ public class MoreUserFragment extends Fragment {
     }
 
     public void getUserProviderProfileInfo(View view) {
-        FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             for (UserInfo profile: user.getProviderData()) {
                 // Id of the provider (ex: google.com)
@@ -157,16 +159,15 @@ public class MoreUserFragment extends Fragment {
     }
 
     public void setUserEmailAddr(View view) {
-        String newEmail = etxtEmail.getText().toString();
+        final String newEmail = etxtEmail.getText().toString();
         if (TextUtils.isEmpty(newEmail))
             return;
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         user.updateEmail(newEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful())
+                    mDataBase.child("users").child(user.getUid()).child("email").setValue(newEmail);
                     Toast.makeText(getActivity(), "email updated", Toast.LENGTH_SHORT).show();
             }
         });
@@ -176,8 +177,6 @@ public class MoreUserFragment extends Fragment {
         String newPassword = etxtPassword.getText().toString();
         if (TextUtils.isEmpty(newPassword))
             return;
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         user.updatePassword(newPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
