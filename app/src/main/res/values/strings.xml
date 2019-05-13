@@ -43,7 +43,8 @@
     <string name="log_in">INICIAR SESIÓN</string>
     <string name="sing_in">CREAR CUENTA</string>
     <string name="recover_password">¿Olvidaste tu contraseña?</string>
-
+    <string name="recover_password_v2">Escribe tu dirección de correo y te enviaremos un email para recuperar tu cuenta</string>
+    <string name="send">Enviar</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

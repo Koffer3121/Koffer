@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.koffer.R;
@@ -37,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText email, password;
     private CheckBox mCheckBoxRemember;
+    private TextView forgottenPassword;
     private ProgressDialog progressDialog;
 
     @Override
@@ -53,12 +55,21 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         mCheckBoxRemember = findViewById(R.id.checkBox);
+        forgottenPassword = findViewById(R.id.forgottenPassword);
         progressDialog = new ProgressDialog(this);
+
         Button btnLogin = findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 login();
+            }
+        });
+
+        forgottenPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendPasswordResetEmail();
             }
         });
     }
@@ -108,6 +119,17 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
             });
+        }
+    }
+
+    private void sendPasswordResetEmail() {
+        String mEmail = email.getText().toString();
+        if (TextUtils.isEmpty(mEmail)) {
+            Intent intent = new Intent(this, SendPasswordResetEmailActivity.class);
+            startActivity(intent);
+        } else {
+            firebaseAuth.sendPasswordResetEmail(mEmail);
+            Toast.makeText(this, "email was sent to your email to reset password", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.PaymentDetailsActivity"></activity>
+        <activity android:name=".view.activity.SendPasswordResetEmailActivity"></activity>
+        <activity android:name=".view.activity.PaymentDetailsActivity" />
         <activity android:name=".view.activity.TrackingActivity" />
         <activity android:name=".view.activity.SlideActivity" />
         <activity android:name=".view.activity.TestingActivity" />
