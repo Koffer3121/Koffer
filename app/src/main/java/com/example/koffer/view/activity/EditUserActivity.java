@@ -36,7 +36,6 @@ public class EditUserActivity extends AppCompatActivity {
     EditText name, email, password, phone;
 
     FirebaseAuth mAuth;
-    private DatabaseReference mRef;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
@@ -46,7 +45,6 @@ public class EditUserActivity extends AppCompatActivity {
         setupFirebaseComponents();
         setupComponents();
     }
-
 
 
     private void setupComponents() {
