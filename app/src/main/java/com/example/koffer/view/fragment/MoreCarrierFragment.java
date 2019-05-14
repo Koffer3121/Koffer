@@ -1,6 +1,5 @@
 package com.example.koffer.view.fragment;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +22,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +31,8 @@ import com.google.firebase.auth.UserInfo;
 public class MoreCarrierFragment extends Fragment {
 
     FirebaseAuth mAuth;
+    private DatabaseReference mDataBase;
+    FirebaseUser user;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     EditText etxtEmail, etxtPassword;
@@ -60,6 +63,8 @@ public class MoreCarrierFragment extends Fragment {
         btnSignOut = view.findViewById(R.id.btnSignOut);
 
         mAuth = FirebaseAuth.getInstance();
+        mDataBase = FirebaseDatabase.getInstance().getReference();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -156,16 +161,15 @@ public class MoreCarrierFragment extends Fragment {
     }
 
     public void setUserEmailAddr(View view) {
-        String newEmail = etxtEmail.getText().toString();
+        final String newEmail = etxtEmail.getText().toString();
         if (TextUtils.isEmpty(newEmail))
             return;
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         user.updateEmail(newEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful())
+                    mDataBase.child("users").child(user.getUid()).child("email").setValue(newEmail);
                     Toast.makeText(getActivity(), "email updated", Toast.LENGTH_SHORT).show();
             }
         });
@@ -175,8 +179,6 @@ public class MoreCarrierFragment extends Fragment {
         String newPassword = etxtPassword.getText().toString();
         if (TextUtils.isEmpty(newPassword))
             return;
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         user.updatePassword(newPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
