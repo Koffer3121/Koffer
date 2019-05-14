@@ -21,16 +21,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView"
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/circleImageView"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:src="@drawable/user"
+            app:civ_border_color="#EEEEEE"
+            app:civ_border_width="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnSignOut" />
@@ -41,13 +43,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="@string/user_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
 
         <TextView
             android:id="@+id/textView7"
@@ -65,7 +67,9 @@
             android:id="@+id/editPerfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
+            android:drawableLeft="@drawable/ic_pencil_outline"
+            android:drawablePadding="10dp"
             android:text="Editar Perfil"
             app:layout_constraintStart_toStartOf="@+id/textView7"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
@@ -75,6 +79,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:drawableLeft="@drawable/ic_settings"
+            android:drawablePadding="10dp"
             android:text="Configuracion"
             app:layout_constraintStart_toStartOf="@+id/editPerfil"
             app:layout_constraintTop_toBottomOf="@+id/editPerfil" />
@@ -84,6 +90,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:drawableLeft="@drawable/ic_history_black_24dp"
+            android:drawablePadding="10dp"
             android:text="Historial de pedidos"
             app:layout_constraintStart_toStartOf="@+id/textView5"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
