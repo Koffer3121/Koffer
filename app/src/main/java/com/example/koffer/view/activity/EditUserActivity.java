@@ -1,5 +1,7 @@
 package com.example.koffer.view.activity;
 
+import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,35 +25,38 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 import es.dmoral.toasty.Toasty;
 
 public class EditUserActivity extends AppCompatActivity {
 
     private static final String USERS_REFERENCE = "users";
-    String userName;
-    String userEmail;
-    String userPhone;
 
 
     EditText name, email, password, phone;
 
     FirebaseAuth mAuth;
+    private DatabaseReference mDataBase;
+    FirebaseUser user;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user);
-        setupFirebaseComponents();
         setupComponents();
+        setupFirebaseComponents();
     }
 
 
     private void setupComponents() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("");
+        }
 
         name = findViewById(R.id.editUserName);
         email = findViewById(R.id.editUserEmail);
@@ -63,21 +68,30 @@ public class EditUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 saveChanges();
+                Intent intent = new Intent(EditUserActivity.this, UserViewActivity.class);
+                startActivity(intent);
+                Toasty.info(getApplicationContext(), "Datos guardados con exito", Toast.LENGTH_LONG).show();
             }
         });
+
     }
 
     private void setupFirebaseComponents() {
         mAuth = FirebaseAuth.getInstance();
+        mDataBase = FirebaseDatabase.getInstance().getReference(USERS_REFERENCE);
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
+                if (user == null) {
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    intent.putExtra("goToActivityUsers", true);
+                    startActivity(intent);
+                    finish();
+                } else {
                     final String userUid = user.getUid();
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference myRef = database.getReference(USERS_REFERENCE);
-                    myRef.child(userUid).addValueEventListener(new ValueEventListener() {
+                    mDataBase.child(userUid).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             getUserInformation(dataSnapshot);
@@ -88,8 +102,6 @@ public class EditUserActivity extends AppCompatActivity {
 
                         }
                     });
-                } else {
-                    Toasty.error(getApplicationContext(), "Algo a salido mal", Toasty.LENGTH_SHORT).show();
                 }
             }
         };
@@ -100,9 +112,9 @@ public class EditUserActivity extends AppCompatActivity {
         UserInformation userInf = dataSnapshot.getValue(UserInformation.class);
         if (userInf != null) {
             if (userInf.email != null && userInf.name != null && userInf.phone_num != null) {
-                userName = userInf.name;
-                userEmail = userInf.email;
-                userPhone = userInf.phone_num;
+                String userName = userInf.name;
+                String userEmail = userInf.email;
+                String userPhone = userInf.phone_num;
                 name.setText(userName);
                 email.setText(userEmail);
                 phone.setText(userPhone);
@@ -113,19 +125,26 @@ public class EditUserActivity extends AppCompatActivity {
         }
     }
 
-
-    public void setUserEmailAddr() {
-        String newEmail = email.getText().toString();
-        if (TextUtils.isEmpty(newEmail))
+    public void setUserName() {
+        final String newName = name.getText().toString();
+        if (TextUtils.isEmpty(newName))
             return;
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        mDataBase.child(user.getUid()).child("name").setValue(newName);
+    }
+
+
+    public void setUserEmailAddr() {
+        final String newEmail = email.getText().toString();
+        if (TextUtils.isEmpty(newEmail))
+            return;
 
         user.updateEmail(newEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful())
-                    Toast.makeText(getApplicationContext(), "email updated", Toast.LENGTH_SHORT).show();
+                if (task.isSuccessful()) {
+                    mDataBase.child(user.getUid()).child("email").setValue(newEmail);
+                }
             }
         });
     }
@@ -137,20 +156,32 @@ public class EditUserActivity extends AppCompatActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        user.updatePassword(newPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful())
-                    Toast.makeText(getApplicationContext(), "password updated", Toast.LENGTH_SHORT).show();
-            }
-        });
+        if (user != null) {
+            user.updatePassword(newPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful())
+                        Toast.makeText(getApplicationContext(), "password updated", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
         password.getText().clear();
         password.setHint("******");
     }
 
+    public void setUserPhone() {
+        final String newPhone = phone.getText().toString();
+        if (TextUtils.isEmpty(newPhone))
+            return;
+
+        mDataBase.child(user.getUid()).child("phone_num").setValue(newPhone);
+    }
+
     private void saveChanges() {
+        setUserName();
         setUserEmailAddr();
         setUserPassword();
+        setUserPhone();
     }
 
     @Override
