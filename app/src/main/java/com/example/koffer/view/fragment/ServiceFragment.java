@@ -1,6 +1,5 @@
 package com.example.koffer.view.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,7 +16,6 @@ import android.widget.Toast;
 import com.example.koffer.R;
 import com.example.koffer.model.Suitcase;
 import com.example.koffer.model.UserSuitcase;
-import com.example.koffer.view.activity.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,8 +23,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import static android.content.ContentValues.TAG;
 
 public class ServiceFragment extends Fragment {
 
@@ -72,7 +68,8 @@ public class ServiceFragment extends Fragment {
         btnService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setupFirebaseComponents();
+//                setupFirebaseComponents();
+                newService();
             }
         });
         return view;
@@ -89,14 +86,15 @@ public class ServiceFragment extends Fragment {
         String weight = this.weight.getText().toString();
         String pickUpAddress = this.pickUpAddress.getText().toString();
         String deliveryAddress = this.deliveryAddress.getText().toString();
-        boolean carrierAsigned = false;
+        Boolean carrierAsigned = false;
 
         if (!TextUtils.isEmpty(name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(phone) || !TextUtils.isEmpty(dniString) || !TextUtils.isEmpty(quantity) || !TextUtils.isEmpty(weight) || !TextUtils.isEmpty(pickUpAddress) || !TextUtils.isEmpty((deliveryAddress))){
             String key = mDatabase.push().getKey();
-            Suitcase suitCase = new Suitcase(name, email, phone, dniString, quantity, weight, pickUpAddress, deliveryAddress, carrierAsigned);
+            Suitcase suitCase = new Suitcase(name, email, phone, dniString, quantity, weight, pickUpAddress, deliveryAddress,carrierAsigned);
             mDatabase.child("suitcase").child(key).setValue(suitCase);
             mDatabase.child("user-suitcase").child(uid).child(key).setValue(true);
-            mDatabase.child("user-suitcase").child(uid).child("activated").setValue(true);
+            mDatabase.child("user-suitcase").child(uid).child(key).child("activeService").setValue(true);
+            mDatabase.child("user-suitcase").child(uid).child(key).child("isCaught").setValue(false);
             Toast.makeText(getActivity(), "Petición aceptada", Toast.LENGTH_LONG).show();
 
         } else {
@@ -126,42 +124,42 @@ public class ServiceFragment extends Fragment {
 //        return true;
 //    }
 
-    private void setupFirebaseComponents() {
-        mDatabase = FirebaseDatabase.getInstance().getReference(USERS_REFERENCE);
-        user = FirebaseAuth.getInstance().getCurrentUser();
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if (user != null) {
-                    final String userUid = user.getUid();
-                    Log.e("USER UID", userUid);
-                    mDatabase.child(userUid).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            getUserInformation(dataSnapshot);
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-                } else {
-                    Log.e("Error", "Error al obtener los datos");
-                }
-            }
-        };
-    }
-
-    private void getUserInformation(DataSnapshot dataSnapshot) {
-        UserSuitcase userInf = dataSnapshot.getValue(UserSuitcase.class);
-        if (userInf != null) {
-            String isActivated = userInf.activated;
-            name.setText(isActivated);
-            Log.d("Activated", isActivated);
-        }
-    }
+//    private void setupFirebaseComponents() {
+//        mDatabase = FirebaseDatabase.getInstance().getReference(USERS_REFERENCE);
+//        user = FirebaseAuth.getInstance().getCurrentUser();
+//
+//        mAuthListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                if (user != null) {
+//                    final String userUid = user.getUid();
+//                    Log.e("USER UID", userUid);
+//                    mDatabase.child(userUid).addValueEventListener(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                            getUserInformation(dataSnapshot);
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                        }
+//                    });
+//                } else {
+//                    Log.e("Error", "Error al obtener los datos");
+//                }
+//            }
+//        };
+//    }
+//
+//    private void getUserInformation(DataSnapshot dataSnapshot) {
+//        UserSuitcase userInf = dataSnapshot.getValue(UserSuitcase.class);
+//        if (userInf != null) {
+//            String isActivated = userInf.activated;
+//            name.setText(isActivated);
+//            Log.d("Activated", isActivated);
+//        }
+//    }
 
 
 }
