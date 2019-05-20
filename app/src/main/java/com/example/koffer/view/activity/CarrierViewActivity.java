@@ -9,7 +9,7 @@ import android.view.MenuItem;
 
 import com.example.koffer.R;
 import com.example.koffer.view.fragment.HomeCarrierFragment;
-import com.example.koffer.view.fragment.MoreCarrierFragment;
+import com.example.koffer.view.fragment.MoreUserFragment;
 import com.example.koffer.view.fragment.ServiceFragment;
 
 public class CarrierViewActivity extends AppCompatActivity {
@@ -44,7 +44,7 @@ public class CarrierViewActivity extends AppCompatActivity {
                             selectedFragment = new ServiceFragment();
                             break;
                         case R.id.nav_more:
-                            selectedFragment = new MoreCarrierFragment();
+                            selectedFragment = new MoreUserFragment();
                             break;
 
                     }

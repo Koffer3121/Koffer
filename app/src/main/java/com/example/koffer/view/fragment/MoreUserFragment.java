@@ -53,9 +53,6 @@ public class MoreUserFragment extends Fragment {
         name = view.findViewById(R.id.moreUserName);
         btnSignOut = view.findViewById(R.id.btnSignOut);
 
-        UserInformation userInf = new UserInformation();
-
-
         setupFirebaseComponents();
 
         editProfile.setOnClickListener(new View.OnClickListener() {

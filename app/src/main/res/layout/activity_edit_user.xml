@@ -15,7 +15,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/koffer"
+        android:src="@drawable/user"
         app:civ_border_color="#EEEEEE"
         app:civ_border_width="4dp"
         app:layout_constraintEnd_toEndOf="parent"
