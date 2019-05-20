@@ -33,6 +33,7 @@
         android:layout_marginRight="32dp"
         android:autofillHints="@string/email"
         android:background="@drawable/edit_text_border"
+        android:drawableStart="@drawable/ic_person_black_24dp"
         android:drawableLeft="@drawable/ic_person_black_24dp"
         android:drawablePadding="12dp"
         android:ems="10"
@@ -47,8 +48,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView1"
-        tools:targetApi="o"
-        android:drawableStart="@drawable/ic_person_black_24dp" />
+        tools:targetApi="o" />
 
     <EditText
         android:id="@+id/password"
