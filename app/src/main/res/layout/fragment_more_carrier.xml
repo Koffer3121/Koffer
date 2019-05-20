@@ -68,7 +68,7 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/btnSignOut"
+            android:id="@+id/btnSignOut2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sign Out" />

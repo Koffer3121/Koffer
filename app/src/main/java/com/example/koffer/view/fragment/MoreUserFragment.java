@@ -1,46 +1,43 @@
 package com.example.koffer.view.fragment;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.koffer.R;
+import com.example.koffer.model.UserInformation;
 import com.example.koffer.view.activity.EditUserActivity;
-import com.example.koffer.view.activity.LoginActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.koffer.view.activity.SelectLoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MoreUserFragment extends Fragment {
 
-    FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
+    private static final String USERS_REFERENCE = "users";
 
-
-    EditText etxtEmail, etxtPassword;
     Button btnSignOut;
-    ImageView setTxtEmailEditable, setTxtPasswordEditable;
+    TextView name, editProfile;
 
-
+    FirebaseAuth mAuth;
+    private DatabaseReference mDataBase;
+    FirebaseUser user;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     public MoreUserFragment() {
         // Required empty public constructor
@@ -51,12 +48,17 @@ public class MoreUserFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_more_user, container, false);
-        TextView textView = view.findViewById(R.id.editPerfil);
+
+        editProfile = view.findViewById(R.id.editPerfil);
+        name = view.findViewById(R.id.moreUserName);
         btnSignOut = view.findViewById(R.id.btnSignOut);
 
-        mAuth = FirebaseAuth.getInstance();
+        UserInformation userInf = new UserInformation();
 
-        textView.setOnClickListener(new View.OnClickListener() {
+
+        setupFirebaseComponents();
+
+        editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), EditUserActivity.class);
@@ -68,14 +70,59 @@ public class MoreUserFragment extends Fragment {
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signOut(v);
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getActivity(), SelectLoginActivity.class);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
         return view;
     }
 
-    public void signOut(View view) {
-        mAuth.signOut();
+    private void setupFirebaseComponents() {
+        mAuth = FirebaseAuth.getInstance();
+        mDataBase = FirebaseDatabase.getInstance().getReference(USERS_REFERENCE);
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if (user != null) {
+                    final String userUid = user.getUid();
+                    mDataBase.child(userUid).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            getUserInformation(dataSnapshot);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+            }
+        };
+    }
+
+
+    private void getUserInformation(DataSnapshot dataSnapshot) {
+        UserInformation userInf = dataSnapshot.getValue(UserInformation.class);
+        if (userInf != null) {
+            if (userInf.email != null && userInf.name != null && userInf.phone_num != null) {
+                String userName = userInf.name;
+                name.setText(userName);
+            } else {
+                Log.e("Error", "algo ha salido mal");
+            }
+
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
     }
 
 }

@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.fragment.MoreUserFragment">
@@ -38,7 +39,7 @@
             app:layout_constraintTop_toBottomOf="@+id/btnSignOut" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/moreUserName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -61,40 +62,114 @@
             android:text="¿Que necesitas?"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintTop_toBottomOf="@+id/moreUserName" />
 
         <TextView
-            android:id="@+id/editPerfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:drawableLeft="@drawable/ic_pencil_outline"
-            android:drawablePadding="10dp"
-            android:text="Editar Perfil"
-            app:layout_constraintStart_toStartOf="@+id/textView7"
+            android:id="@+id/separador"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:background="@color/secondaryColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
+            android:id="@+id/editPerfil"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:drawableLeft="@drawable/ic_settings"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:background="?attr/selectableItemBackground"
+            android:drawableLeft="@drawable/ic_pencil_outline"
+            android:drawableRight="@drawable/ic_chevron_right_black_24dp"
             android:drawablePadding="10dp"
-            android:text="Configuracion"
-            app:layout_constraintStart_toStartOf="@+id/editPerfil"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:text="Editar Perfil"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView7"
+            app:layout_constraintTop_toBottomOf="@+id/separador" />
+
+        <TextView
+            android:id="@+id/separador2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:background="@color/secondaryColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editPerfil" />
 
         <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
+            android:id="@+id/textView5"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:drawableLeft="@drawable/ic_history_black_24dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:background="?attr/selectableItemBackground"
+            android:drawableLeft="@drawable/ic_settings"
+            android:drawableRight="@drawable/ic_chevron_right_black_24dp"
             android:drawablePadding="10dp"
-            android:text="Historial de pedidos"
-            app:layout_constraintStart_toStartOf="@+id/textView5"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:text="Configuracion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/editPerfil"
+            app:layout_constraintTop_toBottomOf="@+id/separador2" />
+
+        <TextView
+            android:id="@+id/separador3"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:background="@color/secondaryColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:background="?attr/selectableItemBackground"
+            android:drawableLeft="@drawable/ic_history_black_24dp"
+            android:drawableRight="@drawable/ic_chevron_right_black_24dp"
+            android:drawablePadding="10dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:text="Historial de pedidos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/separador3" />
+
+        <TextView
+            android:id="@+id/separador4"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:background="@color/secondaryColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>
