@@ -35,7 +35,6 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
 
     private EditText email, password;
-    private CheckBox mCheckBoxRemember;
     private ProgressDialog progressDialog;
 
     @Override
@@ -51,7 +50,6 @@ public class LoginActivity extends AppCompatActivity {
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-        mCheckBoxRemember = findViewById(R.id.checkBox);
         progressDialog = new ProgressDialog(this);
         Button btnLogin = findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
