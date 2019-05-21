@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
+import es.dmoral.toasty.Toasty;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -54,7 +56,7 @@ public class HomeCarrierFragment extends Fragment {
 
         FirebaseRecyclerOptions<Suitcase> options = new FirebaseRecyclerOptions.Builder<Suitcase>()
                 .setIndexedQuery(
-                        mReference.child("unasigned").limitToFirst(100),
+                        mReference.child(SUITCASE_REFERENCE).limitToFirst(100),
                         mReference.child(SUITCASE_REFERENCE), Suitcase.class)
                 .setLifecycleOwner(this)
                 .build();
@@ -76,11 +78,11 @@ public class HomeCarrierFragment extends Fragment {
 
                 orderId(suitcaseKey);
 
-                holder.userName.setText(suitcase.getName());
-                holder.userEmail.setText(suitcase.getEmail());
-                holder.suitcaseQuantity.setText(suitcase.getQuantity());
-                holder.suitcaseKG.setText(suitcase.getKg());
-                holder.suitcaseAdress.setText(suitcase.getPickUpAddress());
+                holder.userName.setText("Nombre: " + suitcase.getName());
+                holder.userEmail.setText("Email: " + suitcase.getEmail());
+                holder.suitcaseQuantity.setText("Cantidad maletas: " + suitcase.getQuantity());
+                holder.suitcaseKG.setText("Kilos total: " + suitcase.getKg());
+                holder.suitcaseAdress.setText("Direccion de recogida: " + suitcase.getPickUpAddress());
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -119,7 +121,7 @@ public class HomeCarrierFragment extends Fragment {
         String uid = FirebaseAuth.getInstance().getUid();
 
         mReference.child("suitcase").child(cardOrderId).child("carrierAsigned").setValue(uid);
-        Toast.makeText(getActivity(), "Petición aceptada", Toast.LENGTH_LONG).show();
+        Toasty.info(getActivity(), "Peticion aceptada", Toast.LENGTH_LONG).show();
     }
 
 }

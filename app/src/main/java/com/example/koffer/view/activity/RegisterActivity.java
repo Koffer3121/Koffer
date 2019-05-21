@@ -95,18 +95,18 @@ public class RegisterActivity extends AppCompatActivity {
                         mRef.child("users").child(firebaseUser.getUid()).child("isTransportist").setValue(false);
                     }
 
-                    Toast.makeText(RegisterActivity.this, "Registro completado, A continuacion inicie sesion.", Toast.LENGTH_LONG).show();
+                    Toasty.info(RegisterActivity.this, "Registro completado, A continuacion inicie sesion.", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
 
 
                 }else {
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                        Toast.makeText(RegisterActivity.this, "Este usuario ya esta registrado!", Toast.LENGTH_LONG).show();
+                        Toasty.info(RegisterActivity.this, "Este usuario ya esta registrado!", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                         startActivity(intent);
                     }else {
-                        Toast.makeText(RegisterActivity.this, "No se puede registrar el usuario.", Toast.LENGTH_LONG).show();
+                        Toasty.error(RegisterActivity.this, "No se puede registrar el usuario.", Toast.LENGTH_LONG).show();
                     }
                 }
                 progressDialog.dismiss();
