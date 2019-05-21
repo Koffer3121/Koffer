@@ -112,7 +112,7 @@ public class ServiceFragment extends Fragment {
         String weight = this.weight.getText().toString();
         String pickUpAddress = this.pickUpAddress.getText().toString();
         String deliveryAddress = this.deliveryAddress.getText().toString();
-        Boolean carrierAsigned = false;
+        String carrierAsigned = "";
 
         if (!TextUtils.isEmpty(name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(phone) || !TextUtils.isEmpty(dniString) || !TextUtils.isEmpty(quantity) || !TextUtils.isEmpty(weight) || !TextUtils.isEmpty(pickUpAddress) || !TextUtils.isEmpty((deliveryAddress))) {
             String key = mdatabase.push().getKey();

@@ -11,6 +11,7 @@ public class SuitcaseViewHolder extends RecyclerView.ViewHolder {
     public TextView userEmail;
     public TextView suitcaseQuantity;
     public TextView suitcaseKG;
+    public TextView suitcaseAdress;
 
     public SuitcaseViewHolder(View item) {
         super(item);
@@ -19,5 +20,6 @@ public class SuitcaseViewHolder extends RecyclerView.ViewHolder {
         userEmail = item.findViewById(R.id.editUserName);
         suitcaseQuantity = item.findViewById(R.id.suitecaseQuantity);
         suitcaseKG = item.findViewById(R.id.suitcaseKG);
+        suitcaseAdress = item.findViewById(R.id.suitcaseAdress);
     }
 }

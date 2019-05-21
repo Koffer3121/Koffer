@@ -73,11 +73,12 @@ public class HomeCarrierFragment extends Fragment {
                 final String suitcaseKey = getRef(position).getKey();
 
                 orderId(suitcaseKey);
-                
+
                 holder.userName.setText(suitcase.getName());
                 holder.userEmail.setText(suitcase.getEmail());
                 holder.suitcaseQuantity.setText(suitcase.getQuantity());
                 holder.suitcaseKG.setText(suitcase.getKg());
+                holder.suitcaseAdress.setText(suitcase.getPickUpAddress());
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -119,8 +120,8 @@ public class HomeCarrierFragment extends Fragment {
     public void orderAssign(){
         String uid = FirebaseAuth.getInstance().getUid();
 
-        mReference.child("carrier-suitcase").child(uid).child(cardOrderId).setValue(true);
-        mReference.child("suitcase").child(cardOrderId).child("carrierAsigned").setValue(true);
+
+        mReference.child("suitcase").child(cardOrderId).child("carrierAsigned").setValue(uid);
         Toast.makeText(getActivity(), "Petición aceptada", Toast.LENGTH_LONG).show();
     }
 
