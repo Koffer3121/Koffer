@@ -19,12 +19,12 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        permissionManager = new PermissionManager() {};
-        permissionManager.checkAndRequestPermissions(this);
 
         Intent intent = new Intent(MainActivity.this, SlideActivity.class);
         startActivity(intent);
 
+        permissionManager = new PermissionManager() {};
+        permissionManager.checkAndRequestPermissions(this);
 
         finish();
     }
