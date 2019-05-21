@@ -53,7 +53,9 @@ public class HomeCarrierFragment extends Fragment {
         mUser = FirebaseAuth.getInstance().getCurrentUser();
 
         FirebaseRecyclerOptions<Suitcase> options = new FirebaseRecyclerOptions.Builder<Suitcase>()
-                .setIndexedQuery(setQuery(), mReference.child(SUITCASE_REFERENCE), Suitcase.class)
+                .setIndexedQuery(
+                        mReference.child("unasigned").limitToFirst(100),
+                        mReference.child(SUITCASE_REFERENCE), Suitcase.class)
                 .setLifecycleOwner(this)
                 .build();
 
@@ -109,17 +111,12 @@ public class HomeCarrierFragment extends Fragment {
         builder.show();
     }
 
-    Query setQuery(){
-        return  mReference.child(SUITCASE_REFERENCE).limitToFirst(100);
-    }
-
     public void orderId(String suitcaseKey){
-
         cardOrderId = suitcaseKey;
     }
+
     public void orderAssign(){
         String uid = FirebaseAuth.getInstance().getUid();
-
 
         mReference.child("suitcase").child(cardOrderId).child("carrierAsigned").setValue(uid);
         Toast.makeText(getActivity(), "Petición aceptada", Toast.LENGTH_LONG).show();

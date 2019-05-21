@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.example.koffer.view.activity.LoginActivity;
 import com.example.koffer.view.activity.SelectLoginActivity;
+import com.example.koffer.view.activity.SlideActivity;
 import com.karan.churi.PermissionManager.PermissionManager;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,12 +19,12 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Intent intent = new Intent(MainActivity.this, SelectLoginActivity.class);
-        startActivity(intent);
-
         permissionManager = new PermissionManager() {};
         permissionManager.checkAndRequestPermissions(this);
+
+        Intent intent = new Intent(MainActivity.this, SlideActivity.class);
+        startActivity(intent);
+
 
         finish();
     }

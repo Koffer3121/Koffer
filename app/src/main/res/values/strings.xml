@@ -37,6 +37,7 @@
     <string name="welcome_title_register">Crea una cuenta</string>
     <string name="name">Nombre</string>
     <string name="email">Email</string>
+    <string name="text_forgot">Introduce email para restablecer la constraseña</string>
     <string name="password">· · · · · · ·</string>
     <string name="remember_pass">Recordar Contraseña</string>
     <string name="terms_and_conditions">He leído y acepto los Términos del servicio y la Política de privacidad de Koffer</string>
@@ -48,6 +49,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="send">Enviar</string>
 
 
 </resources>
