@@ -15,7 +15,7 @@
         app:layout_constraintBottom_toTopOf="@+id/slide_header"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/eat_icon" />
+        app:srcCompat="@drawable/code_icon" />
 
     <TextView
         android:id="@+id/slide_header"

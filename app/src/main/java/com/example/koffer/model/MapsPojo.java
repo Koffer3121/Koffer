@@ -1,5 +1,6 @@
 package com.example.koffer.model;
 
+// Plain Old Java Object
 public class MapsPojo {
 
     private double latitud;

@@ -96,7 +96,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         }
 
         mGoogleMap = googleMap;
-        googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+
+        mGoogleMap.clear();
+
+        double latitud = 41.4504118;
+        double longitud = 2.1941695;
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(new LatLng(latitud,longitud));
+        mGoogleMap.addMarker(markerOptions);
+
+
 
         mDatabase.child("suitcase").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -109,17 +120,17 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
 
                     MapsPojo mp = snapshot.getValue(MapsPojo.class);
-                    double latitud = 0;
+                    double latitud = 41.4504118;
                     if (mp != null) {
                         latitud = mp.getLatitud();
                     }
-                    double longitud = 0;
+                    double longitud = 2.1941695;
                     if (mp != null) {
                         longitud = mp.getLongitud();
                     }
                     MarkerOptions markerOptions = new MarkerOptions();
                     markerOptions.position(new LatLng(latitud,longitud));
-                    tmpRealTimeMarkers.add(mGoogleMap.addMarker(markerOptions));
+//                    tmpRealTimeMarkers.add(mGoogleMap.addMarker(markerOptions));
 
                 }
 
