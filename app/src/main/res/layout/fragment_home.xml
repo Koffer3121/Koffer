@@ -6,11 +6,10 @@
     android:background="@android:color/holo_blue_bright"
     tools:context=".view.fragment.HomeUserFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/suitcase_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="WELCOME"
-        android:gravity="center"/>
+        android:scrollbars="vertical" />
 
 </FrameLayout>
