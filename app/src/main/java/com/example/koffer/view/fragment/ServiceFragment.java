@@ -119,6 +119,7 @@ public class ServiceFragment extends Fragment {
             Suitcase suitCase = new Suitcase(name, email, phone, dniString, quantity, weight, pickUpAddress, deliveryAddress,carrierAsigned);
             mdatabase.child("suitcase").child(key).setValue(suitCase);
             mdatabase.child("user-suitcase").child(uid).child(key).setValue(true);
+            mdatabase.child("unassigned-suitcase").child(key).setValue(true);
             Toast.makeText(getActivity(), "Petición aceptada", Toast.LENGTH_LONG).show();
             processPayment();
 
