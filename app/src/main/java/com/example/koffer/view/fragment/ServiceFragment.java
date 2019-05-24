@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +15,18 @@ import android.widget.Toast;
 
 import com.example.koffer.R;
 import com.example.koffer.model.Suitcase;
+import com.example.koffer.model.UserSuitcase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ServiceFragment extends Fragment {
+
+    private static final String USERS_REFERENCE = "user-suitcase";
 
     View view;
     EditText name;
@@ -32,14 +39,20 @@ public class ServiceFragment extends Fragment {
     EditText deliveryAddress;
     Button btnService;
 
-    private DatabaseReference mdatabase;
+
+    private DatabaseReference mDatabase;
+    FirebaseUser user;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+
+    boolean statusOrder = false;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_service, container, false);
 
-        mdatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         name = view.findViewById(R.id.registerName);
         email = view.findViewById(R.id.email);
@@ -55,6 +68,7 @@ public class ServiceFragment extends Fragment {
         btnService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                setupFirebaseComponents();
                 newService();
             }
         });
@@ -75,14 +89,77 @@ public class ServiceFragment extends Fragment {
         Boolean carrierAsigned = false;
 
         if (!TextUtils.isEmpty(name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(phone) || !TextUtils.isEmpty(dniString) || !TextUtils.isEmpty(quantity) || !TextUtils.isEmpty(weight) || !TextUtils.isEmpty(pickUpAddress) || !TextUtils.isEmpty((deliveryAddress))){
-            String key = mdatabase.push().getKey();
+            String key = mDatabase.push().getKey();
             Suitcase suitCase = new Suitcase(name, email, phone, dniString, quantity, weight, pickUpAddress, deliveryAddress,carrierAsigned);
-            mdatabase.child("suitcase").child(key).setValue(suitCase);
-            mdatabase.child("user-suitcase").child(uid).child(key).setValue(true);
+            mDatabase.child("suitcase").child(key).setValue(suitCase);
+            mDatabase.child("user-suitcase").child(uid).child(key).setValue(true);
+            mDatabase.child("user-suitcase").child(uid).child(key).child("activeService").setValue(true);
+            mDatabase.child("user-suitcase").child(uid).child(key).child("isCaught").setValue(false);
             Toast.makeText(getActivity(), "Petición aceptada", Toast.LENGTH_LONG).show();
 
         } else {
             Toast.makeText(getActivity(), "Debes completar todos los campos", Toast.LENGTH_LONG).show();
         }
     }
+
+//    public boolean checkNewService() {
+//
+//        ValueEventListener statusServiceListener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                statusOrder = (boolean) dataSnapshot.child("user-suitcase").child(user.getUid()).child("activated").getValue();
+//                if (statusOrder) {
+//                    Toast.makeText(getActivity(), "ya tiene un pedido activo", Toast.LENGTH_SHORT).show();
+//                    return false;
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                Log.d(TAG, "onCancelled: error al obtener valor");
+//            }
+//        };
+//
+//
+//        return true;
+//    }
+
+//    private void setupFirebaseComponents() {
+//        mDatabase = FirebaseDatabase.getInstance().getReference(USERS_REFERENCE);
+//        user = FirebaseAuth.getInstance().getCurrentUser();
+//
+//        mAuthListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                if (user != null) {
+//                    final String userUid = user.getUid();
+//                    Log.e("USER UID", userUid);
+//                    mDatabase.child(userUid).addValueEventListener(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                            getUserInformation(dataSnapshot);
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                        }
+//                    });
+//                } else {
+//                    Log.e("Error", "Error al obtener los datos");
+//                }
+//            }
+//        };
+//    }
+//
+//    private void getUserInformation(DataSnapshot dataSnapshot) {
+//        UserSuitcase userInf = dataSnapshot.getValue(UserSuitcase.class);
+//        if (userInf != null) {
+//            String isActivated = userInf.activated;
+//            name.setText(isActivated);
+//            Log.d("Activated", isActivated);
+//        }
+//    }
+
+
 }

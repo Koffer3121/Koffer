@@ -16,7 +16,7 @@ public class Suitcase {
 
     }
 
-    public Suitcase(String name, String email, String telephone, String dni, String quantity, String kg, String deliveryAddress, String pickUpAddress,Boolean carrierAsigned) {
+    public Suitcase(String name, String email, String telephone, String dni, String quantity, String kg, String deliveryAddress, String pickUpAddress, boolean carrierAsigned) {
         this.name = name;
         this.email = email;
         this.telephone = telephone;
@@ -63,10 +63,6 @@ public class Suitcase {
     public boolean isCarrierAsigned() {
         return carrierAsigned;
     }
-
-
-
-
 
 
 }
