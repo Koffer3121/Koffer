@@ -1,14 +1,18 @@
 package com.example.koffer;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.koffer.view.activity.LoginActivity;
 import com.example.koffer.view.activity.SelectLoginActivity;
-
+import com.example.koffer.view.activity.SlideActivity;
+import com.karan.churi.PermissionManager.PermissionManager;
 
 public class MainActivity extends AppCompatActivity {
+
+    PermissionManager permissionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,39 +20,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(MainActivity.this, SelectLoginActivity.class);
+        Intent intent = new Intent(MainActivity.this, SlideActivity.class);
         startActivity(intent);
+
+        permissionManager = new PermissionManager() {};
+        permissionManager.checkAndRequestPermissions(this);
+
         finish();
     }
 
-//    String uid;
-//    uid = getCurrent.guid()
-//    view.findViewById();
-//    this   =>   getActivity()
-//    nclick(){
-//    saco los dato
-//    long =
-//    lat  =
-//    canti =
-//    String suitcaseKey = getReference().push().getKey();
-//    getReference().child("suitcase").child(suitcaseKey).setValue(suitcase);
-//    Ref().child("user-suicase").child(uid).child(suitcaseKey).setValue(true);
-//     }
-    //uid = getCurrent.guid()
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        permissionManager.checkResult(requestCode, permissions, grantResults);
+    }
 
-//        view.findViewById();
-
-// this   =>   getActivity()
-
-        /*
-            nclick(){
-                saco los dato
-                long =
-                lat  =
-                canti =
-                String suitcaseKey = getReference().push().getKey();
-                getReference().child("suitcase").child(suitcaseKey).setValue(suitcase);
-                Ref().child("user-suicase").child(uid).child(suitcaseKey).setValue(true);
-            }
-         */
 }

@@ -2,6 +2,7 @@ package com.example.koffer.view.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +10,9 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.koffer.R;
@@ -34,12 +37,15 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
 
     private EditText email, password;
+    private CheckBox mCheckBoxRemember;
+    private TextView forgottenPassword;
     private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         setupComponents();
     }
 
@@ -48,12 +54,22 @@ public class LoginActivity extends AppCompatActivity {
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
+        mCheckBoxRemember = findViewById(R.id.checkBox);
+        forgottenPassword = findViewById(R.id.forgottenPassword);
         progressDialog = new ProgressDialog(this);
+
         Button btnLogin = findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 login();
+            }
+        });
+
+        forgottenPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendPasswordResetEmail();
             }
         });
     }
@@ -104,7 +120,18 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         }
+    }
 
+    private void sendPasswordResetEmail() {
+        String mEmail = email.getText().toString();
+        if (TextUtils.isEmpty(mEmail)) {
+            Intent intent = new Intent(this, SendPasswordResetEmailActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            firebaseAuth.sendPasswordResetEmail(mEmail);
+            Toast.makeText(this, "email was sent to your email to reset password", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void getUserInformationAndDecideWhereTheUserShouldGo(@NonNull DataSnapshot dataSnapshot) {

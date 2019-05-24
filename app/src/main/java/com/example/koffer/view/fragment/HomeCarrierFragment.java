@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
+import es.dmoral.toasty.Toasty;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -52,7 +54,9 @@ public class HomeCarrierFragment extends Fragment {
         mUser = FirebaseAuth.getInstance().getCurrentUser();
 
         FirebaseRecyclerOptions<Suitcase> options = new FirebaseRecyclerOptions.Builder<Suitcase>()
-                .setIndexedQuery(setQuery(), mReference.child(SUITCASE_REFERENCE), Suitcase.class)
+                .setIndexedQuery(
+                        mReference.child("unassigned-suitcase").limitToFirst(100),
+                        mReference.child(SUITCASE_REFERENCE), Suitcase.class)
                 .setLifecycleOwner(this)
                 .build();
 
@@ -72,11 +76,12 @@ public class HomeCarrierFragment extends Fragment {
                 final String suitcaseKey = getRef(position).getKey();
 
                 orderId(suitcaseKey);
-                
-                holder.userName.setText(suitcase.getName());
-                holder.userEmail.setText(suitcase.getEmail());
-                holder.suitcaseQuantity.setText(suitcase.getQuantity());
-                holder.suitcaseKG.setText(suitcase.getKg());
+
+                holder.userName.setText("Nombre: " + suitcase.getName());
+                holder.userEmail.setText("Email: " + suitcase.getEmail());
+                holder.suitcaseQuantity.setText("Cantidad maletas: " + suitcase.getQuantity());
+                holder.suitcaseKG.setText("Kilos total: " + suitcase.getKg());
+                holder.suitcaseAdress.setText("Direccion de recogida: " + suitcase.getPickUpAddress());
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -107,10 +112,6 @@ public class HomeCarrierFragment extends Fragment {
         builder.show();
     }
 
-    Query setQuery(){
-        return  mReference.child(SUITCASE_REFERENCE).limitToFirst(100);
-    }
-
     public void orderId(String suitcaseKey){
         cardOrderId = suitcaseKey;
     }
@@ -118,9 +119,10 @@ public class HomeCarrierFragment extends Fragment {
     public void orderAssign(){
         String uid = FirebaseAuth.getInstance().getUid();
 
-        mReference.child("carrier-suitcase").child(uid).child(cardOrderId).setValue(true);
-        mReference.child("suitcase").child(cardOrderId).child("carrierAsigned").setValue(true);
-        Toast.makeText(getActivity(), "Petición aceptada", Toast.LENGTH_LONG).show();
+        mReference.child("suitcase").child(cardOrderId).child("carrierAsigned").setValue(uid);
+        mReference.child("carrier-suitcase").child(mUser.getUid()).child(cardOrderId).setValue(true);
+        mReference.child("unassigned-suitcase").child(cardOrderId).setValue(null);
+        Toasty.info(getActivity(), "Peticion aceptada", Toast.LENGTH_LONG).show();
     }
 
 }

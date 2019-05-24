@@ -2,11 +2,11 @@
 <resources>
     <!-- Main theme -->
     <color name="colorPrimary">#d5f5e3</color>
-    <color name="primaryLightColor">#ffffff</color>
+    <color name="primaryLightColor">#FFFFFF</color>
     <color name="colorPrimaryDark">#a3c2b1</color>
     <color name="secondaryColor">#424949</color>
     <color name="secondaryLightColor">#6D7474</color>
-    <color name="secondaryDarkColor">#1b2222</color>
+    <color name="secondaryDarkColor">#1B2222</color>
 
     <!-- Text Color -->
     <color name="primaryTextColor">#000000</color>
