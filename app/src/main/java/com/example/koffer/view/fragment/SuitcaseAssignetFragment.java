@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.koffer.R;
+import com.example.koffer.model.MapsPojo;
 import com.example.koffer.model.Suitcase;
 import com.example.koffer.view.SuitcaseViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -46,11 +47,10 @@ public class SuitcaseAssignetFragment extends Fragment {
     public FusedLocationProviderClient mLocation;
 
     private String cardOrderId;
+    private String suitcaseUid;
 
 
-    public SuitcaseAssignetFragment() {
-        // Required empty public constructor
-    }
+    public SuitcaseAssignetFragment() {}
 
 
     @Override
@@ -87,7 +87,8 @@ public class SuitcaseAssignetFragment extends Fragment {
             protected void onBindViewHolder(@NonNull SuitcaseViewHolder holder, int position, @NonNull Suitcase suitcase) {
                 final String suitcaseKey = getRef(position).getKey();
 
-                orderId(suitcaseKey);
+                cardOrderId = suitcaseKey;
+                suitcaseUid = suitcase.getUid();
 
                 holder.userName.setText("Nombre: " + suitcase.getName());
                 holder.userEmail.setText("Email: " + suitcase.getEmail());
@@ -102,10 +103,6 @@ public class SuitcaseAssignetFragment extends Fragment {
                 });
             }
         });
-    }
-
-    public void orderId(String suitcaseKey) {
-        cardOrderId = suitcaseKey;
     }
 
     private void openDialog() {
@@ -129,30 +126,23 @@ public class SuitcaseAssignetFragment extends Fragment {
     }
 
     public void delivered() {
+        // uid del transportista
         String uid = FirebaseAuth.getInstance().getUid();
         mLocation = LocationServices.getFusedLocationProviderClient(getActivity());
 
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return;
         }
         mLocation.getLastLocation()
                 .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
-                        // Got last known location. In some rare situations this can be null.
                         if (location != null) {
-                            Map<String,Object> latlang = new HashMap<>();
-                            latlang.put("latitude",location.getLatitude());
-                            latlang.put("longitud",location.getLongitude());
-                            latlang.put("delivered",true);
-                            mReference.child("map-suitcase").child(cardOrderId).setValue(latlang);
+                            MapsPojo mp = new MapsPojo();
+                            mp.setLatitude(location.getLatitude());
+                            mp.setLongitude(location.getLongitude());
+                            mp.setDelivered(true);
+                            mReference.child("map-suitcase").child(suitcaseUid).child(cardOrderId).setValue(mp);
                         }
                     }
                 });
@@ -166,26 +156,17 @@ public class SuitcaseAssignetFragment extends Fragment {
         mLocation = LocationServices.getFusedLocationProviderClient(getActivity());
 
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return;
         }
         mLocation.getLastLocation()
                 .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
-                        // Got last known location. In some rare situations this can be null.
                         if (location != null) {
-                            Map<String,Object> latlang = new HashMap<>();
-                            latlang.put("latitude",location.getLatitude());
-                            latlang.put("longitud",location.getLongitude());
-                            latlang.put("delivered",false);
-                            mReference.child("map-suitcase").child(cardOrderId).setValue(latlang);
+                            MapsPojo mp = new MapsPojo();
+                            mp.setLatitude(location.getLatitude());
+                            mp.setLongitude(location.getLongitude());
+                            mReference.child("map-suitcase").child(suitcaseUid).child(cardOrderId).setValue(mp);
                         }
                     }
                 });
