@@ -5,20 +5,20 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.koffer.R;
-import com.example.koffer.model.MapsPojo;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,7 +38,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     MapView mMapView;
     View mView;
 
-    private DatabaseReference mDatabase;
+    private DatabaseReference mReference;
+    private FirebaseUser mUser;
     private ArrayList<Marker> tmpRealTimeMarkers = new ArrayList<>();
 
     private ArrayList<Marker> realTimeMarkers = new ArrayList<>();
@@ -53,6 +54,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_map, container, false);
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
         return mView;
     }
 
@@ -60,7 +62,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mReference = FirebaseDatabase.getInstance().getReference().child("user-suitcase");
 //        countDownTimer();
 
         mMapView = mView.findViewById(R.id.map);
@@ -95,38 +97,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             MapsInitializer.initialize(Objects.requireNonNull(getContext()));
         }
 
-        mGoogleMap = googleMap;
-        googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
-        mDatabase.child("suitcase").addListenerForSingleValueEvent(new ValueEventListener() {
+        mReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (Marker marker: realTimeMarkers) {
-                    marker.remove();
-                }
-
-                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-
-                    MapsPojo mp = snapshot.getValue(MapsPojo.class);
-                    double latitud = 0;
-                    if (mp != null) {
-                        latitud = mp.getLatitud();
-                    }
-                    double longitud = 0;
-                    if (mp != null) {
-                        longitud = mp.getLongitud();
-                    }
-                    MarkerOptions markerOptions = new MarkerOptions();
-                    markerOptions.position(new LatLng(latitud,longitud));
-                    tmpRealTimeMarkers.add(mGoogleMap.addMarker(markerOptions));
-
-                }
-
-                realTimeMarkers.clear();
-                realTimeMarkers.addAll(tmpRealTimeMarkers);
-//                countDownTimer();
-
+                String suitcaseId = dataSnapshot.getKey();
+                Log.e("ID", suitcaseId);
             }
 
             @Override
@@ -134,5 +110,41 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
             }
         });
+//        mReference.child("suitcase").addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//
+//                for (Marker marker: realTimeMarkers) {
+//                    marker.remove();
+//                }
+//
+//                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+//
+//                    MapsPojo mp = snapshot.getValue(MapsPojo.class);
+//                    double latitud = 0;
+//                    if (mp != null) {
+//                        latitud = mp.getLatitud();
+//                    }
+//                    double longitud = 0;
+//                    if (mp != null) {
+//                        longitud = mp.getLongitud();
+//                    }
+//                    MarkerOptions markerOptions = new MarkerOptions();
+//                    markerOptions.position(new LatLng(latitud,longitud));
+//                    tmpRealTimeMarkers.add(mGoogleMap.addMarker(markerOptions));
+//
+//                }
+//
+//                realTimeMarkers.clear();
+//                realTimeMarkers.addAll(tmpRealTimeMarkers);
+////                countDownTimer();
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
     }
 }
