@@ -30,6 +30,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
+import static android.content.ContentValues.TAG;
+
 public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     GoogleMap mGoogleMap;
@@ -106,7 +108,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        })
+        });
 
         mDatabase.child("map-suitcase").child(uid).addValueEventListener(new ValueEventListener() {
             @Override
@@ -114,13 +116,21 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 Log.e("abc", "changed");
 
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                    String snippet;
+                    if (snapshot.child("delivered").getValue().toString() == "true") {
+                        snippet = "ENTREGADO";
+                    } else {
+                        snippet = "NO ENTREGADO";
+                    }
 
                     MapsPojo mp = snapshot.getValue(MapsPojo.class);
                     if (mp != null) {
                         Log.e("abc", mp.getLatitude() + "  " + mp.getLongitude());
                         MarkerOptions markerOptions = new MarkerOptions();
                         markerOptions.position(new LatLng(mp.getLatitude(),mp.getLongitude()));
-                        mGoogleMap.addMarker(markerOptions);
+                        markerOptions.title("SUITCASE");
+                        markerOptions.snippet(snippet);
+                    mGoogleMap.addMarker(markerOptions);
                     }
 
                 }
