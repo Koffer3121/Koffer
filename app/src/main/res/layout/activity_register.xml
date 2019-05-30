@@ -144,15 +144,24 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
-                android:padding="8dp"
-                android:text="@string/terms_and_conditions"
                 android:textColor="@color/primaryTextColor"
                 android:theme="@style/CheckBoxTheme"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registerPhone" />
+
+            <TextView
+                android:id="@+id/pdf"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:text="@string/terms_and_conditions"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/checkBox"
                 app:layout_constraintTop_toBottomOf="@+id/registerPhone" />
 
             <Button
@@ -170,7 +179,8 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+                app:layout_constraintTop_toBottomOf="@+id/pdf" />
+
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 

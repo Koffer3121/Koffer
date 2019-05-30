@@ -5,8 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.koffer.view.activity.LoginActivity;
-import com.example.koffer.view.activity.SelectLoginActivity;
 import com.example.koffer.view.activity.SlideActivity;
 import com.karan.churi.PermissionManager.PermissionManager;
 

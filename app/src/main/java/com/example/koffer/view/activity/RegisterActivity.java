@@ -2,17 +2,25 @@ package com.example.koffer.view.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.koffer.R;
+import com.github.barteksc.pdfviewer.PDFView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -27,6 +35,8 @@ import es.dmoral.toasty.Toasty;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    TextView textView;
+
     //Declaramos un objeto firebaseAuth
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mRef;
@@ -39,8 +49,32 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
         setupComponents();
+        setupStyles();
+    }
+
+
+    private void setupStyles() {
+        TextView checkbox = findViewById(R.id.pdf);
+        String text = "He leído y acepto los Términos del servicio y la Política de privacidad de Koffer";
+        SpannableString ss = new SpannableString(text);
+        ForegroundColorSpan fcsBlue = new ForegroundColorSpan(Color.BLUE);
+        ForegroundColorSpan fcsBlue2 = new ForegroundColorSpan(Color.BLUE);
+        UnderlineSpan underlineSpan = new UnderlineSpan();
+        UnderlineSpan underlineSpan2 = new UnderlineSpan();
+        ss.setSpan(underlineSpan, 22, 43, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(underlineSpan2, 48, 81, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(fcsBlue, 22, 43, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(fcsBlue2, 48, 81, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        checkbox.setText(ss);
+
+        checkbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://drive.google.com/file/d/14rMza6evlSd9qfor8sJL0f4rn3jd_c2o/view?usp=sharing"));
+                startActivity(intent);
+            }
+        });
     }
 
     private void setupComponents() {

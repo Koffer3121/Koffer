@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.EditUserActivity"/>
+        <activity android:name=".view.activity.EditUserActivity" />
         <activity android:name=".view.activity.PaymentDetailsActivity" />
         <activity android:name=".view.activity.TrackingActivity" />
         <activity android:name=".view.activity.SlideActivity" />
@@ -33,8 +33,7 @@
         </activity>
         <activity android:name=".view.activity.CarrierViewActivity" />
         <activity android:name=".view.activity.SendPasswordResetEmailActivity" />
-        <activity android:name=".view.activity.HistoryUserActivity"/>
-        <!-- Maps Android Key -->
+        <activity android:name=".view.activity.HistoryUserActivity" /> <!-- Maps Android Key -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCQJXpAJLALRBTMRP0pg0oVKQiVG9Jn_WU" />
