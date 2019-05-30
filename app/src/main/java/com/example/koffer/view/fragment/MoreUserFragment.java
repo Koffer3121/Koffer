@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.koffer.R;
@@ -32,7 +33,7 @@ public class MoreUserFragment extends Fragment {
 
     private static final String USERS_REFERENCE = "users";
 
-    Button btnSignOut;
+    ImageView btnSignOut;
     TextView name, editProfile, history;
 
     FirebaseAuth mAuth;

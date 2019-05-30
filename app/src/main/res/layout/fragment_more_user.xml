@@ -11,14 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
+        <ImageView
             android:id="@+id/btnSignOut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:text="Cerrar sesión"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@android:drawable/ic_lock_power_off"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
