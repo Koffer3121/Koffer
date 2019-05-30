@@ -2,6 +2,7 @@ package com.example.koffer.view.fragment;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -10,11 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.koffer.R;
 import com.example.koffer.model.UserInformation;
 import com.example.koffer.view.activity.EditUserActivity;
+import com.example.koffer.view.activity.HistoryUserActivity;
 import com.example.koffer.view.activity.SelectLoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,8 +34,8 @@ public class MoreUserFragment extends Fragment {
 
     private static final String USERS_REFERENCE = "users";
 
-    Button btnSignOut;
-    TextView name, editProfile;
+    ImageView btnSignOut;
+    TextView name, editProfile, history, termns;
 
     FirebaseAuth mAuth;
     private DatabaseReference mDataBase;
@@ -50,6 +53,8 @@ public class MoreUserFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_more_user, container, false);
 
         editProfile = view.findViewById(R.id.editPerfil);
+        termns = view.findViewById(R.id.terms);
+        history = view.findViewById(R.id.history);
         name = view.findViewById(R.id.moreUserName);
         btnSignOut = view.findViewById(R.id.btnSignOut);
 
@@ -63,6 +68,21 @@ public class MoreUserFragment extends Fragment {
             }
         });
 
+        termns.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://drive.google.com/file/d/14rMza6evlSd9qfor8sJL0f4rn3jd_c2o/view?usp=sharing"));
+                startActivity(intent);
+            }
+        });
+
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryUserActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override

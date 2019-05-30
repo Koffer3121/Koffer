@@ -31,14 +31,14 @@ public class SlideActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slide);
 
-//        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-//
-//        if (sharedPreferences.getBoolean("FIRST_RUN",true)){
-//            sharedPreferences.edit().putBoolean("FIRST_RUN", false).apply();
-//        } else {
-//            startActivity(new Intent(this, SelectLoginActivity.class));
-//            finish();
-//        }
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+
+        if (sharedPreferences.getBoolean("FIRST_RUN",true)){
+            sharedPreferences.edit().putBoolean("FIRST_RUN", false).apply();
+        } else {
+            startActivity(new Intent(this, SelectLoginActivity.class));
+            finish();
+        }
 
         mSlideViewPager = findViewById(R.id.slideViewPager);
         mDotLayout = findViewById(R.id.dotsLayout);

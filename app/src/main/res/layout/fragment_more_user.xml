@@ -11,14 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
+        <ImageView
             android:id="@+id/btnSignOut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:text="Cerrar sesión"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@android:drawable/ic_lock_power_off"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -110,18 +111,18 @@
             app:layout_constraintTop_toBottomOf="@+id/editPerfil" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/terms"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
             android:background="?attr/selectableItemBackground"
-            android:drawableLeft="@drawable/ic_settings"
+            android:drawableLeft="@drawable/ic_content_paste_black_24dp"
             android:drawableRight="@drawable/ic_chevron_right_black_24dp"
             android:drawablePadding="10dp"
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
-            android:text="Configuracion"
+            android:text="Términos y condiciones"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/editPerfil"
             app:layout_constraintTop_toBottomOf="@+id/separador2" />
@@ -138,10 +139,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/terms" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/history"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
@@ -154,7 +155,7 @@
             android:paddingBottom="15dp"
             android:text="Historial de pedidos"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintStart_toStartOf="@+id/terms"
             app:layout_constraintTop_toBottomOf="@+id/separador3" />
 
         <TextView
@@ -169,7 +170,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            app:layout_constraintTop_toBottomOf="@+id/history" />
 
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>

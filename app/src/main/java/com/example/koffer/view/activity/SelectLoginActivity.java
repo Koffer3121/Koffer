@@ -17,16 +17,6 @@ public class SelectLoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_login);
-
-//        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-
-//        if (sharedPreferences.getBoolean("IS_LOGIN",true)){
-//            sharedPreferences.edit().putBoolean("IS_LOGIN", false).apply();
-//        } else {
-//            startActivity(new Intent(this, MainMenuActivity.class));
-//            finish();
-//        }
-
         setupComponents();
     }
 

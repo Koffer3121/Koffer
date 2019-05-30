@@ -30,6 +30,9 @@
     <string name="user_email">User Email</string>
     <string name="suitcase_quantity">Suitcase Quantity</string>
     <string name="suitcase_kg">Suitcase KG</string>
+    <string name="suitcase_title">Datos personales</string>
+    <string name="suitcase_title2">Datos de la maleta</string>
+    <string name="suitcase_title3">Datos de entrega y recogida</string>
 
     <!-- Login and Register-->
     <string name="welcome_title_login">¡Bienvenido!</string>
@@ -49,6 +52,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="send">Enviar</string>
+    <string name="title_activity_pdf">PDFActivity</string>
 
 
 </resources>
