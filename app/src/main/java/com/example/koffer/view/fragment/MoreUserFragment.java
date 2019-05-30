@@ -2,6 +2,7 @@ package com.example.koffer.view.fragment;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -34,7 +35,7 @@ public class MoreUserFragment extends Fragment {
     private static final String USERS_REFERENCE = "users";
 
     ImageView btnSignOut;
-    TextView name, editProfile, history;
+    TextView name, editProfile, history, termns;
 
     FirebaseAuth mAuth;
     private DatabaseReference mDataBase;
@@ -52,6 +53,7 @@ public class MoreUserFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_more_user, container, false);
 
         editProfile = view.findViewById(R.id.editPerfil);
+        termns = view.findViewById(R.id.terms);
         history = view.findViewById(R.id.history);
         name = view.findViewById(R.id.moreUserName);
         btnSignOut = view.findViewById(R.id.btnSignOut);
@@ -62,6 +64,14 @@ public class MoreUserFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), EditUserActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        termns.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://drive.google.com/file/d/14rMza6evlSd9qfor8sJL0f4rn3jd_c2o/view?usp=sharing"));
                 startActivity(intent);
             }
         });
