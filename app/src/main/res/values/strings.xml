@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Koffer</string>
+    <string name="app_name_upper_case">KOFFER</string>
 
     <!-- Slide Layout -->
     <string name="header">HEADER</string>
@@ -8,4 +9,50 @@
     <string name="next_btn">SIGUIENTE</string>
     <string name="prev_btn">ATRÁS</string>
     <string name="finish_btn">ACABAR</string>
+    <string name="title_activity_main_menu">MainMenuActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Toast messages -->
+    <string name="logging_in">Iniciando sesión…</string>
+    <string name="logging_in_error">Error al inicar sesión, prueba de nuevo mas tarde</string>
+    <string name="welcome">Bienvenido:</string>
+    <string name="success">Sesión inicada correctamente</string>
+    <string name="empty_fields">Se deben rellenar todos los campos</string>
+    <string name="user_not_registered">¡Este usuario no está registrado!</string>
+
+    <!-- Suitcase -->
+    <string name="user_name">User Name</string>
+    <string name="user_email">User Email</string>
+    <string name="suitcase_quantity">Suitcase Quantity</string>
+    <string name="suitcase_kg">Suitcase KG</string>
+    <string name="suitcase_title">Datos personales</string>
+    <string name="suitcase_title2">Datos de la maleta</string>
+    <string name="suitcase_title3">Datos de entrega y recogida</string>
+
+    <!-- Login and Register-->
+    <string name="welcome_title_login">¡Bienvenido!</string>
+    <string name="welcome_subtitle_login">Inicia sesión con tu correo para empezar</string>
+    <string name="welcome_title_register">Crea una cuenta</string>
+    <string name="name">Nombre</string>
+    <string name="email">Email</string>
+    <string name="text_forgot">Introduce email para restablecer la constraseña</string>
+    <string name="password">· · · · · · ·</string>
+    <string name="remember_pass">Recordar Contraseña</string>
+    <string name="terms_and_conditions">He leído y acepto los Términos del servicio y la Política de privacidad de Koffer</string>
+    <string name="log_in">INICIAR SESIÓN</string>
+    <string name="sing_in">CREAR CUENTA</string>
+    <string name="recover_password">¿Olvidaste tu contraseña?</string>
+    <string name="phone">111222333</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="send">Enviar</string>
+    <string name="title_activity_pdf">PDFActivity</string>
+
+
 </resources>

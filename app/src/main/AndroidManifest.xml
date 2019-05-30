@@ -3,6 +3,8 @@
     package="com.example.koffer">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,11 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SlideActivity"></activity>
-        <activity android:name=".TestingActivity" />
-        <activity android:name=".SelectLoginActivity"></activity>
-        <activity android:name=".view.RegisterActivity" />
-        <activity android:name=".view.LoginActivity" />
+        <activity android:name=".view.activity.EditUserActivity" />
+        <activity android:name=".view.activity.PaymentDetailsActivity" />
+        <activity android:name=".view.activity.TrackingActivity" />
+        <activity android:name=".view.activity.SlideActivity" />
+        <activity android:name=".view.activity.TestingActivity" />
+        <activity android:name=".view.activity.UserViewActivity" />
+        <activity android:name=".view.activity.SelectLoginActivity" />
+        <activity android:name=".view.activity.RegisterActivity" />
+        <activity android:name=".view.activity.LoginActivity" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/SplashTheme">
@@ -25,6 +31,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.activity.CarrierViewActivity" />
+        <activity android:name=".view.activity.SendPasswordResetEmailActivity" />
+        <activity android:name=".view.activity.HistoryUserActivity" /> <!-- Maps Android Key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCQJXpAJLALRBTMRP0pg0oVKQiVG9Jn_WU" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

@@ -1,10 +1,16 @@
 package com.example.koffer;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.koffer.view.activity.SlideActivity;
+import com.karan.churi.PermissionManager.PermissionManager;
+
 public class MainActivity extends AppCompatActivity {
+
+    PermissionManager permissionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,5 +20,16 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(MainActivity.this, SlideActivity.class);
         startActivity(intent);
+
+        permissionManager = new PermissionManager() {};
+        permissionManager.checkAndRequestPermissions(this);
+
+        finish();
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        permissionManager.checkResult(requestCode, permissions, grantResults);
+    }
+
 }

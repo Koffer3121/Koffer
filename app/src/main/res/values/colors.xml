@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Main theme -->
     <color name="colorPrimary">#d5f5e3</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="primaryLightColor">#FFFFFF</color>
+    <color name="colorPrimaryDark">#a3c2b1</color>
+    <color name="secondaryColor">#424949</color>
+    <color name="secondaryLightColor">#6D7474</color>
+    <color name="secondaryDarkColor">#1B2222</color>
+
+    <!-- Text Color -->
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#FFFFFF</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorWhite">#FFFFFF</color>
-    <color name="colorTransparentWhite">#CCCCCC</color>
-    <color name="colorRLButton">#43000000</color>
+    <color name="colorTransparentWhite">#80FFFFFF</color>
+
+    <!-- Button Color -->
+    <color name="colorRLButton">#1E88E5</color>
     <color name="colorRLText">#FFFFFF</color>
+
+    <!-- Bottom Navigation bar -->
+    <color name="background">#1d8348</color>
 </resources>
