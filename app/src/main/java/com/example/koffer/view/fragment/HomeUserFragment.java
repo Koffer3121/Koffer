@@ -66,7 +66,6 @@ public class HomeUserFragment extends Fragment {
             protected void onBindViewHolder(@NonNull SuitcaseViewHolder holder, int position, @NonNull Suitcase suitcase) {
                 final String suitcaseKey = getRef(position).getKey();
 
-
                 holder.userName.setText("Nombre: " + suitcase.getName());
                 holder.userEmail.setText("Email: " + suitcase.getEmail());
                 holder.suitcaseQuantity.setText("Cantidad maletas: " + suitcase.getQuantity());
