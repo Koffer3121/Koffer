@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.koffer.R;
 import com.example.koffer.model.UserInformation;
 import com.example.koffer.view.activity.EditUserActivity;
+import com.example.koffer.view.activity.HistoryUserActivity;
 import com.example.koffer.view.activity.SelectLoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,7 +33,7 @@ public class MoreUserFragment extends Fragment {
     private static final String USERS_REFERENCE = "users";
 
     Button btnSignOut;
-    TextView name, editProfile;
+    TextView name, editProfile, history;
 
     FirebaseAuth mAuth;
     private DatabaseReference mDataBase;
@@ -50,6 +51,7 @@ public class MoreUserFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_more_user, container, false);
 
         editProfile = view.findViewById(R.id.editPerfil);
+        history = view.findViewById(R.id.history);
         name = view.findViewById(R.id.moreUserName);
         btnSignOut = view.findViewById(R.id.btnSignOut);
 
@@ -63,6 +65,13 @@ public class MoreUserFragment extends Fragment {
             }
         });
 
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryUserActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override

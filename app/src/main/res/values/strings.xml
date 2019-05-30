@@ -30,6 +30,9 @@
     <string name="user_email">User Email</string>
     <string name="suitcase_quantity">Suitcase Quantity</string>
     <string name="suitcase_kg">Suitcase KG</string>
+    <string name="suitcase_title">Datos personales</string>
+    <string name="suitcase_title2">Datos de la maleta</string>
+    <string name="suitcase_title3">Datos de entrega y recogida</string>
 
     <!-- Login and Register-->
     <string name="welcome_title_login">¡Bienvenido!</string>

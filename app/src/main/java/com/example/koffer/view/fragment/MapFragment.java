@@ -75,52 +75,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         mGoogleMap = googleMap;
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-
-
         mGoogleMap.clear();
-
-//        double latitud = 41.4504118;
-//        double longitud = 2.1941695;
-//        MarkerOptions markerOptions = new MarkerOptions();
-//        markerOptions.position(new LatLng(latitud,longitud));
-        mDatabase.child("map-suitcase").child(uid).addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
         mDatabase.child("map-suitcase").child(uid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.e("abc", "changed");
-
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     String snippet;
                     if (snapshot.child("delivered").getValue().toString() == "true") {
                         snippet = "ENTREGADO";
                     } else {
-                        snippet = "NO ENTREGADO";
+                        snippet = "EN CAMINO";
                     }
 
                     MapsPojo mp = snapshot.getValue(MapsPojo.class);

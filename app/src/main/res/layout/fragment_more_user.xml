@@ -116,12 +116,12 @@
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
             android:background="?attr/selectableItemBackground"
-            android:drawableLeft="@drawable/ic_settings"
+            android:drawableLeft="@drawable/ic_content_paste_black_24dp"
             android:drawableRight="@drawable/ic_chevron_right_black_24dp"
             android:drawablePadding="10dp"
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
-            android:text="Configuracion"
+            android:text="Términos y condiciones"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/editPerfil"
             app:layout_constraintTop_toBottomOf="@+id/separador2" />
@@ -141,7 +141,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/history"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
@@ -169,7 +169,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            app:layout_constraintTop_toBottomOf="@+id/history" />
 
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>

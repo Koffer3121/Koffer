@@ -24,7 +24,7 @@
 
     <EditText
         android:id="@+id/email"
-        android:text="nicky.rufino@gmail.com"
+        android:text="jruiz@elpuig.xeill.net"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -53,7 +53,7 @@
 
     <EditText
         android:id="@+id/password"
-        android:text="rufino"
+        android:text="pitote"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"

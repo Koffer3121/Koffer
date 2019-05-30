@@ -149,6 +149,7 @@ public class SuitcaseAssignetFragment extends Fragment {
 
 
         mReference.child("carrier-suitcase").child(uid).child(cardOrderId).setValue(null);
+        mReference.child("user-suitcase-active").child(cardOrderId).setValue(null);
         Toasty.info(getActivity(), "Pedido entregado", Toast.LENGTH_LONG).show();
     }
 

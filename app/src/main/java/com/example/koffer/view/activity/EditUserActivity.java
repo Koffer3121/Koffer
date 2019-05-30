@@ -51,13 +51,6 @@ public class EditUserActivity extends AppCompatActivity {
 
 
     private void setupComponents() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("");
-        }
-
         name = findViewById(R.id.editUserName);
         email = findViewById(R.id.editUserEmail);
         password = findViewById(R.id.editUserPassword);
