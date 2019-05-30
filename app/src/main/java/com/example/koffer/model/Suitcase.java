@@ -2,6 +2,7 @@ package com.example.koffer.model;
 
 public class Suitcase {
 
+    private String uid;
     private String name;
     private String email;
     private String telephone;
@@ -16,7 +17,8 @@ public class Suitcase {
 
     }
 
-    public Suitcase(String name, String email, String telephone, String dni, String quantity, String kg, String pickUpAddress, String deliveryAddress, String carrierAsigned) {
+    public Suitcase(String uid, String name, String email, String telephone, String dni, String quantity, String kg, String pickUpAddress, String deliveryAddress, String carrierAsigned) {
+        this.uid = uid;
         this.name = name;
         this.email = email;
         this.telephone = telephone;
@@ -26,6 +28,14 @@ public class Suitcase {
         this.pickUpAddress = pickUpAddress;
         this.deliveryAddress = deliveryAddress;
         this.carrierAsigned = carrierAsigned;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getName() {
