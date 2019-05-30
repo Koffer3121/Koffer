@@ -57,7 +57,7 @@ public class TrackingActivity extends AppCompatActivity {
                             Log.e("Latitud: ",+ location.getLatitude() + "Longitud: " + location.getLongitude());
 
                             Map<String, Object> latlang = new HashMap<>();
-                            latlang.put("latitud", location.getLatitude());
+                            latlang.put("latitude", location.getLatitude());
                             latlang.put("longitud", location.getLongitude());
                             mDatabase.child("suitcase").push().setValue(latlang);
                         }
