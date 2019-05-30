@@ -116,7 +116,7 @@ public class ServiceFragment extends Fragment {
 
         if (!TextUtils.isEmpty(name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(phone) || !TextUtils.isEmpty(dniString) || !TextUtils.isEmpty(quantity) || !TextUtils.isEmpty(weight) || !TextUtils.isEmpty(pickUpAddress) || !TextUtils.isEmpty((deliveryAddress))) {
             String key = mdatabase.push().getKey();
-            Suitcase suitCase = new Suitcase(name, email, phone, dniString, quantity, weight, pickUpAddress, deliveryAddress,carrierAsigned);
+            Suitcase suitCase = new Suitcase(uid, name, email, phone, dniString, quantity, weight, pickUpAddress, deliveryAddress,carrierAsigned);
             mdatabase.child("suitcase").child(key).setValue(suitCase);
             mdatabase.child("user-suitcase").child(uid).child(key).setValue(true);
             mdatabase.child("unassigned-suitcase").child(key).setValue(true);

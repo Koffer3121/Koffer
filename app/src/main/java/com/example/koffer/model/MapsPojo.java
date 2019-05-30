@@ -3,25 +3,34 @@ package com.example.koffer.model;
 // Plain Old Java Object
 public class MapsPojo {
 
-    private double latitud;
-    private double longitud;
+    private double latitude;
+    private double longitude;
+    private boolean delivered;
 
     public MapsPojo() {
     }
 
-    public double getLongitud() {
-        return longitud;
+    public boolean isDelivered() {
+        return delivered;
     }
 
-    public void setLongitud(double longitud) {
-        this.longitud = longitud;
+    public void setDelivered(boolean delivered) {
+        this.delivered = delivered;
     }
 
-    public double getLatitud() {
-        return latitud;
+    public double getLongitude() {
+        return longitude;
     }
 
-    public void setLatitud(double latitud) {
-        this.latitud = latitud;
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 }
