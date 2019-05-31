@@ -89,7 +89,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
                     MapsPojo mp = snapshot.getValue(MapsPojo.class);
                     if (mp != null) {
-                        Log.e("abc", mp.getLatitude() + "  " + mp.getLongitude());
                         MarkerOptions markerOptions = new MarkerOptions();
                         markerOptions.position(new LatLng(mp.getLatitude(),mp.getLongitude()));
                         markerOptions.title("SUITCASE");
