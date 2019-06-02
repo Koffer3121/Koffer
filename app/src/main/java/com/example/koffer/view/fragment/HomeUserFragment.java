@@ -24,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 public class HomeUserFragment extends Fragment {
 
     public static final String SUITCASE_REFERENCE = "suitcase";
+    public static final String SUITCASE_ACTIVE_REFERENCE = "user-suitcase-active";
     public DatabaseReference mReference;
     public FirebaseUser mUser;
 
@@ -46,7 +47,7 @@ public class HomeUserFragment extends Fragment {
 
         FirebaseRecyclerOptions<Suitcase> options = new FirebaseRecyclerOptions.Builder<Suitcase>()
                 .setIndexedQuery(
-                        mReference.child("user-suitcase-active").limitToFirst(100),
+                        mReference.child(SUITCASE_ACTIVE_REFERENCE).child(mUser.getUid()).limitToFirst(100),
                         mReference.child(SUITCASE_REFERENCE), Suitcase.class)
 
                 .setLifecycleOwner(this)
